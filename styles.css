@@ -57,8 +57,16 @@ body {
   color: var(--muted);
 }
 
+.hero__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
 .hero__cta {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   text-decoration: none;
   color: #09112b;
   background: var(--accent);
@@ -67,8 +75,18 @@ body {
   font-weight: 600;
 }
 
-.hero__cta:hover {
-  background: var(--accent-hover);
+.hero__cta--linkedin {
+  background: #0a66c2;
+  color: #fff;
+}
+
+.hero__cta--linkedin:hover {
+  background: #0b76e0;
+}
+
+.hero__icon {
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
 .container {
