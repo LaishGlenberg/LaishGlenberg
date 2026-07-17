@@ -10,7 +10,7 @@ function formatDescription(description) {
 }
 
 function repoImagePath(repoName) {
-  return `assets/images/repos/${repoName}.jpg`;
+  return `./assets/images/repos/${repoName}.JPG`;
 }
 
 async function fetchRepos() {
@@ -48,7 +48,7 @@ function renderRepos(repos) {
     image.alt = `${repo.name} repository preview`;
     image.onerror = () => {
       image.onerror = null;
-      image.src = "assets/images/repos/repo-placeholder.jpg";
+      image.src = "./assets/images/repos/repo-placeholder.JPG";
     };
 
     title.textContent = repo.name;
