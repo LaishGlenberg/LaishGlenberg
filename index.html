@@ -1,53 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Laish Glenberg | GitHub Repositories</title>
-  <meta name="description" content="Personal GitHub Pages site for Laish Glenberg" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <header class="hero">
-    <div class="hero__inner">
-      <img
-        src="./assets/images/profile-placeholder.JPG"
-        alt="Profile photo placeholder"
-        class="hero__avatar"
-      />
-      <div class="hero__content">
-        <h1>Laish Glenberg</h1>
-        <p>Welcome to my GitHub portfolio. Explore my repositories, descriptions, and project highlights.</p>
-        <div class="hero__links">
-          <a class="hero__cta" href="https://github.com/LaishGlenberg" target="_blank" rel="noopener noreferrer">View GitHub Profile</a>
-          <a class="hero__cta hero__cta--linkedin" href="https://www.linkedin.com/in/laish-glenberg/" target="_blank" rel="noopener noreferrer">
-            <img src="https://api.iconify.design/simple-icons:linkedin.svg" width="24" height="24" alt="LinkedIn" />
-            LinkedIn
-          </a>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main class="container">
-    <section>
-      <h2>My Repositories</h2>
-      <p class="section-intro">Each card includes a space for a project image. Replace placeholder files in <code>assets/images/</code> with your own screenshots.</p>
-      <div id="repo-grid" class="repo-grid" aria-live="polite"></div>
-    </section>
-  </main>
-
-  <template id="repo-card-template">
-    <article class="repo-card">
-      <img class="repo-card__image" src="" alt="" />
-      <div class="repo-card__body">
-        <h3 class="repo-card__title"></h3>
-        <p class="repo-card__description"></p>
-        <a class="repo-card__link" target="_blank" rel="noopener noreferrer">Open Repository</a>
-      </div>
-    </article>
-  </template>
-
-  <script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Laish Glenberg | GitHub Repositories</title>
+    <meta
+      name="description"
+      content="Personal GitHub Pages site for Laish Glenberg"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
