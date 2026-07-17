@@ -1,16 +1,5 @@
+import { marked } from "marked";
 import FEATURED_REPOS from "../config.js";
-
-function truncateReadme(text, maxLen = 600) {
-  if (!text) return "";
-  const clean = text
-    .replace(/^#+\s+/gm, "")
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
-    .replace(/```[\s\S]*?```/g, "")
-    .replace(/---+/g, "")
-    .trim();
-  if (clean.length <= maxLen) return clean;
-  return clean.slice(0, maxLen).replace(/\s\S*$/, "") + " …";
-}
 
 export default function FeaturedRepos({ repos }) {
   const featured = repos.filter((r) => FEATURED_REPOS.includes(r.name));
@@ -42,16 +31,17 @@ export default function FeaturedRepos({ repos }) {
             <p className="featured-card__description">
               {repo.description || "No description provided."}
             </p>
-            <div className="featured-card__readme">
-              <strong>README preview:</strong>
-              {repo.readme ? (
-                <p>{truncateReadme(repo.readme)}</p>
-              ) : (
-                <p className="featured-card__no-readme">
-                  No README available.
-                </p>
-              )}
-            </div>
+            {repo.readme && (
+              <div className="featured-card__readme">
+                <strong>README preview:</strong>
+                <div
+                  className="featured-card__markdown"
+                  dangerouslySetInnerHTML={{
+                    __html: marked.parse(repo.readme, { breaks: true }),
+                  }}
+                />
+              </div>
+            )}
             <div className="featured-card__footer">
               <a
                 className="featured-card__link"

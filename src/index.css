@@ -237,20 +237,106 @@ h2 {
   padding: 0.8rem;
   font-size: 0.88rem;
   color: var(--muted);
-  max-height: 280px;
+  max-height: 300px;
   overflow-y: auto;
 }
 
-.featured-card__readme strong {
+.featured-card__readme > strong {
   color: var(--text);
   display: block;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.4rem;
 }
 
-.featured-card__readme p {
-  margin: 0;
-  line-height: 1.45;
-  white-space: pre-wrap;
+.featured-card__markdown {
+  line-height: 1.5;
+}
+
+.featured-card__markdown p {
+  margin: 0 0 0.5rem;
+}
+
+.featured-card__markdown p:last-child {
+  margin-bottom: 0;
+}
+
+.featured-card__markdown h1,
+.featured-card__markdown h2,
+.featured-card__markdown h3,
+.featured-card__markdown h4 {
+  color: var(--text);
+  margin: 0.6rem 0 0.3rem;
+}
+
+.featured-card__markdown h1 { font-size: 1.05rem; }
+.featured-card__markdown h2 { font-size: 0.98rem; }
+.featured-card__markdown h3 { font-size: 0.92rem; }
+
+.featured-card__markdown ul,
+.featured-card__markdown ol {
+  margin: 0 0 0.4rem;
+  padding-left: 1.2rem;
+}
+
+.featured-card__markdown li {
+  margin-bottom: 0.2rem;
+}
+
+.featured-card__markdown code {
+  background: rgba(121, 168, 255, 0.1);
+  color: #c9d8ff;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+.featured-card__markdown pre {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  padding: 0.6rem;
+  overflow-x: auto;
+  margin: 0 0 0.5rem;
+}
+
+.featured-card__markdown pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.82rem;
+}
+
+.featured-card__markdown a {
+  color: var(--accent);
+}
+
+.featured-card__markdown hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0.6rem 0;
+}
+
+.featured-card__markdown table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+}
+
+.featured-card__markdown th,
+.featured-card__markdown td {
+  border: 1px solid var(--border);
+  padding: 0.3rem 0.5rem;
+  text-align: left;
+}
+
+.featured-card__markdown th {
+  background: rgba(121, 168, 255, 0.08);
+  color: var(--text);
+}
+
+.featured-card__markdown blockquote {
+  border-left: 3px solid var(--accent);
+  margin: 0 0 0.5rem;
+  padding: 0.2rem 0.6rem;
+  color: var(--muted);
 }
 
 .featured-card__loading {
