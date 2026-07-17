@@ -1,0 +1,193 @@
+{
+  "repos": [
+    {
+      "id": 1303340355,
+      "name": "LaishGlenberg",
+      "description": "Personal github site for Laish Glenberg",
+      "html_url": "https://github.com/LaishGlenberg/LaishGlenberg",
+      "language": "JavaScript",
+      "stargazers_count": 0
+    },
+    {
+      "id": 1291452898,
+      "name": "firebase-emulator-mcp",
+      "description": "Standalone repository for firebase emulator mcp server",
+      "html_url": "https://github.com/LaishGlenberg/firebase-emulator-mcp",
+      "language": "JavaScript",
+      "stargazers_count": 0,
+      "readme": "# Firebase Emulator MCP Server\n[![GitHub](https://img.shields.io/badge/GitHub-firebase--emulator--mcp-181717?&logo=github)](https://github.com/LaishGlenberg)\n\nA [Model Context Protocol](https://modelcontextprotocol.io) server that exposes Firebase\nemulator data — Firestore, Auth, Logs, and Realtime Database — to AI agents over stdio.\n\nDesigned for local development workflows where AI coding assistants (Claude Code, GitHub\nCopilot, etc.) need to inspect emulator state without leaving the editor.\n\nCreated by [Laish Glenberg](https://www.linkedin.com/in/laish-glenberg/), please drop a star on the repo if this package helped you!\n\n---\n\n## Features\n\n| Tool | Description |\n|---|---|\n| `emulator_status` | Ping all emulators and report reachability |\n| `firestore_list_collections` | List root-level collection IDs |\n| `firestore_query` | Query documents with optional field filters (`==`, `>=`, `<=`, `in`, etc.) |\n| `firestore_get` | Fetch a single document by path (e.g. `Member/abc123`) |\n| `rtdb_get` | Read any path from the Realtime Database emulator |\n| `auth_list_users` | List Firebase Auth users |\n| `auth_get_user` | Look up a user by email or localId |\n| `emulator_logs` | Stream recent log entries from the emulator hub WebSocket |\n\n---\n\n## Prerequisites\n\n- **Node.js 18+** (native `fetch` and `WebSocket` — v21+ recommended)\n- **Firebase emulators** running locally — start from your project root:\n\n  ```bash\n  firebase emulators:start\n  ```\n\n  The server connects to the default emulator ports:\n  - Firestore: `8080`\n  - Auth: `9099`\n  - Realtime Database: `9000`\n  - Hub (logs): `4500`\n\n---\n\n## Install & Run\n\n### Via npm (recommended)\n\n```bash\nnpm install -g firebase-emulator-mcp\nfirebase-emulator-mcp\n```\n\n---\n\n## VS Code / MCP Client Setup\n\nAdd to your project's `.vscode/mcp.json` or VS Code user settings:\n\n```json\n{\n  \"servers\": {\n    \"firebase-emulator\": {\n      \"type\": \"stdio\",\n      \"command\": \"node\",\n      \"args\": [\"./mcp-server/lib/index.js\"],\n      \"env\": {\n        \"FIREBASE_PROJECT_ID\": \"<proj_id>\",\n        \"FIREBASE_RTDB_NAMESPACE\": \"<proj_id>-default-rtdb\"\n      }\n    }\n  }\n}\n```\n\nOr if installed globally:\n\n```json\n{\n  \"servers\": {\n    \"firebase-emulator\": {\n      \"type\": \"stdio\",\n      \"command\": \"firebase-emulator-mcp\",\n      \"env\": {\n        \"FIREBASE_PROJECT_ID\": \"<proj_id>\",\n        \"FIREBASE_RTDB_NAMESPACE\": \"<proj_id>-default-rtdb\"\n      }\n    }\n  }\n}\n```\n\nOptionally can skip install and run directly through npx\n\n```json\n{\n  \"servers\": {\n    \"firebase-emulator\": {\n      \"type\": \"stdio\",\n      \"command\": \"npx\",\n      \"args\": [\"@lglen/firebase-emulator-mcp\"],\n      \"env\": {\n        \"FIREBASE_PROJECT_ID\": \"<proj_id>\",\n        \"FIREBASE_RTDB_NAMESPACE\": \"<proj_id>-default-rtdb\"\n      }\n    }\n  }\n}\n```\n\nFor Claude Code or other MCP clients, use the same stdio configuration.\n\n---\n\n### Project structure\n\n```\nmcp-server/\n├── src/\n│   └── index.ts          # TypeScript source (all tools)\n├── lib/                   # Compiled output (git-ignored)\n├── test.mjs              # Smoke test runner\n├── tsconfig.json\n├── package.json\n├── .gitignore\n├── LICENSE               # MIT\n└── README.md\n```\n\n---\n\n## Configuration\n\nDefault emulator ports are defined in `src/index.ts` under the `EMULATORS` constant.\nEdit them to match your `firebase.json` if you use non-standard ports:\n\n| Service     | Default Port |\n|-------------|--------------|\n| Firestore   | 8080         |\n| Auth        | 9099         |\n| Realtime DB | 9000         |\n| Storage     | 9199         |\n| Emulator UI | 4000         |\n| Hub (logs)  | 4500         |\n\n---\n\n## License\n\nMIT\n\n## Author\n\nCheck me out on [GitHub](https://github.com/LaishGlenberg)"
+    },
+    {
+      "id": 1280074517,
+      "name": "split-image-to-pdf",
+      "description": "",
+      "html_url": "https://github.com/LaishGlenberg/split-image-to-pdf",
+      "language": "TypeScript",
+      "stargazers_count": 0,
+      "readme": "# Split Image to PDF\n\nA TypeScript CLI tool that splits a wide image (e.g., a panoramic photo, a wide banner, or a large map) into multiple PDF pages. Each page shows a horizontal slice of the image, scaled to fit the chosen page size and DPI.\n\n## Features\n\n- ✂️ Splits any wide image into equal horizontal slices\n- 📄 Each slice becomes a page in a single PDF\n- 🖨️ Configurable **page size** (A4, Letter, A3, A5, Legal, Tabloid)\n- 🔍 Configurable **DPI** (72, 96, 150, 200, 300, 600 — or custom value)\n- � **Scale/zoom** factor — higher = more zoomed in = spans more pages\n- �📐 Auto-calculates page count, or you can specify it manually\n- 🖼️ Supports PNG, JPEG, and other formats (via [sharp](https://sharp.pixelplumbing.com/))\n\n## Installation\n\n```bash\nnpm install\n```\n\n## Usage\n\n```bash\n# Basic — split an image to A4 at 300 DPI\nnpm run split -- --input wide-image.png\n\n# Custom DPI and page size\nnpm run split -- --input photo.jpg --dpi 150 --pagesize Letter\n\n# Zoom in 2x — image appears larger on each page, spans more pages\nnpm run split -- --input map.png --scale 2\n\n# Specify output path and page count manually\nnpm run split -- -i map.png -o output.pdf -d 600 -n 5\n\n# Direct invocation\nnpx tsx src/index.ts --input panorama.jpg\n```\n\n### Options\n\n| Flag                 | Alias | Description                                  | Default       |\n|----------------------|-------|----------------------------------------------|---------------|\n| `--input`            | `-i`  | Path to the input image **(required)**       | —             |\n| `--output`           | `-o`  | Output PDF path                              | `<input>.pdf` |\n| `--dpi`              | `-d`  | DPI setting                                  | `300`         |\n| `--pagesize`         | `-p`  | Standard page size                           | `A4`          |\n| `--scale`            | `-s`  | Zoom factor (higher = more pages)            | `1.0`         |\n| `--pages`            | `-n`  | Number of PDF pages (auto-calculated if omitted) | auto      |\n| `--help`             | `-h`  | Show help message                            | —             |\n\n### Supported Page Sizes\n\n| Size     | Dimensions (mm) |\n|----------|-----------------|\n| A4       | 210 × 297       |\n| Letter   | 215.9 × 279.4   |\n| A3       | 297 × 420       |\n| A5       | 148 × 210       |\n| Legal    | 215.9 × 355.6   |\n| Tabloid  | 279.4 × 431.8   |\n\n## How It Works\n\n1. **Read** the image and its dimensions.\n2. **Calculate** how many image pixels fit on one page using the page size, DPI, and scale.\n3. **Calculate** the number of pages needed to cover the full image width.\n4. **Slice** the image horizontally — one slice per page.\n5. **Create** a PDF where each slice occupies its own page (using real paper dimensions in PDF points), scaled to fit.\n\n### Scale vs DPI\n\n- **DPI** controls how many image pixels map to a physical inch on paper. Higher DPI = more image detail per page = fewer pages.\n- **Scale** is a zoom multiplier on top of DPI. Higher scale = more zoomed in = less image per page = more pages.\n- Example: `--scale 2.0` shows the image at 2× magnification, spanning roughly twice as many pages as normal.\n\n## Project Structure\n\n```\nsplit-image-to-pdf/\n├── src/\n│   ├── __tests__/        # Jest test suites\n│   │   ├── config.test.ts\n│   │   ├── imageSplitter.test.ts\n│   │   ├── pdfCreator.test.ts\n│   │   └── integration.test.ts\n│   ├── config.ts         # Page sizes, DPI, scale calculations\n│   ├── imageSplitter.ts  # Image slicing logic (sharp)\n│   ├── pdfCreator.ts     # PDF generation (pdf-lib)\n│   └── index.ts          # CLI entry point\n├── jest.config.js\n├── package.json\n├── tsconfig.json\n├── AGENTS.md\n├── CHANGELOG.md\n└── README.md\n```\n\n## Requirements\n\n- Node.js 18+\n- npm\n\n## Build\n\n```bash\nnpm run build     # compiles TypeScript to dist/\n```\n\n## Test\n\n```bash\nnpm test                  # run tests once\nnpm run test:watch        # run tests in watch mode\n```\n\nDebug logging is available via the `debug` library:\n\n```bash\nDEBUG=split-image-to-pdf:* npm test\n```\n\n## License\n\nISC\n"
+    },
+    {
+      "id": 1270825755,
+      "name": "bing-image-helper",
+      "description": "Bing image helper",
+      "html_url": "https://github.com/LaishGlenberg/bing-image-helper",
+      "language": "TypeScript",
+      "stargazers_count": 1
+    },
+    {
+      "id": 1162435278,
+      "name": "copilot-agent-node",
+      "description": "GH Copilot SDK agents with cool properties",
+      "html_url": "https://github.com/LaishGlenberg/copilot-agent-node",
+      "language": "TypeScript",
+      "stargazers_count": 0
+    },
+    {
+      "id": 1179488882,
+      "name": "arrowhead-scaler-figma-plugin",
+      "description": "",
+      "html_url": "https://github.com/LaishGlenberg/arrowhead-scaler-figma-plugin",
+      "language": "TypeScript",
+      "stargazers_count": 0,
+      "readme": "# Arrowhead Scaler Figma Plugin\n\n**Built by**: LaishGlenberg\n\n**Description**: Plugin for making custom arrow heads and using more traditional, anchored scaling style for arrow heads. Makes stroke thickness updates applied consistently across the arrow. Especially useful with triangle arrow heads/ends or circular arrows where traditional figma stroke thickness breaks.\n\n**How it works**: This plugin works by removing the normal start/end point arrow heads and replacing them with vector shapes that can be controlled with custom dimensions and scaling. Unlike before, each arrowhead line can now be arranged assymetrically allowing for far greater control over arrow designs. The only downside is that you can't use Figma's native start/end point arrowheads while the plugin is enabled on an arrow\n\n**Status**: This is a work in progress and the plugin is still in development."
+    },
+    {
+      "id": 1150464590,
+      "name": "termai",
+      "description": "termai - AI powered CLI tool for explaining terminal output",
+      "html_url": "https://github.com/LaishGlenberg/termai",
+      "language": "JavaScript",
+      "stargazers_count": 1,
+      "readme": "# termai - AI powered CLI tool for explaining terminal output\n\n---\n\n### Description\n\nA super lightweight CLI tool that can explain terminal output (from previous commands) using Ollama or any provider that supports the OpenAI API v1 completion endpoints (OpenAI, Gemini, Perplexity, etc.). The default configuration uses Ollama over localhost with the llama3.1 model. After running a command and getting output, run 'termai' and you will get an explanation of both the command and its output. Options to explain more than 1 command or use a custom prompt. You can even send regular prompts (without terminal output) as you would when using ollama models normally without needing to change commands or switch contexts.\n\nPlease note that the bash terminal does not store terminal output or offer a way to retrieve it so termai starts a script session and stores terminal output within a log file.\n\n---\n### Installation/Setup\nTo install run \n```\nnpm install -g term-ai\n```\n\nThen follow the basic setup.\n\n```\ntermai --setup\n```\nYou can customize the http address used for the generate request, the default is just http://localhost:11434, where 11434 is the standard Ollama port as well as change the default model (llama3.1).\n\n### \"What is Ollama?\"\n\nOllama is a tool you can use to run models on your machine locally, they also offer cloud hosted models like deepseek, it is 100% free and easy to download/use. Go to https://ollama.ai/ for the official download. You can run\n```\nollama list\n```\nto see what models are being offered by default, and\n```\nollama pull llama3.1:latest\n```\nto download a new model (like llama3.1:latest). Make sure everything works by using the run command before using termai.\n```\nollama run llama3 \n```\n\n### For WSL:\n\nNote that if you are using WSL with ollama running on your main machine you can replace the localhost portion with your host machine ip address. You can choose Ollama WSL option during setup which does this automatically, although you can also find the host machine IP using this command in wsl:\n\n```\nip route | grep default | awk '{print `$3}'\n```\nBack to windows on powershell, you must also set OLLAMA to listen on a network that WSL can connect to. One way to do this is let it listen on all interfaces 0.0.0.0, this is the easiest method but can also be potentially insecure in a public wifi setting.\n```\nsetx OLLAMA_HOST 0.0.0.0\n```\nA better method is to setup a function in your powershell profile that gets your host machine ip from wsl (using the same command as before) and sets Ollama to listen on only that ip. If you don't have a powershell profile then run this powershell script first:\n```\n$profileDir = Split-Path $PROFILE -Parent\nif (!(Test-Path $profileDir)) {\n    New-Item -ItemType Directory -Path $profileDir -Force\n}\n```\nThen create the function with this script (easiest to combine both in a .ps1 file and run that in powershell)\n```\n@'\nfunction Set-OllamaWSL {\n    $wslIP = wsl -e bash -c \"ip route | grep default | awk '{print `$3}'\"\n    setx OLLAMA_HOST $wslIP /M\n    Write-Host \"✅ Ollama now bound to WSL host IP: $wslIP\" -ForegroundColor Green\n}\n'@ | Out-File $PROFILE -Encoding UTF8\n```\nThen open a new powershell terminal in admin mode and run:\n```\nSet-OllamaWSL\n```\nGoing forward any time you start a new wsl instance and want to use termai you can run the Set-OllamaWSL command in powershell to update the interface with the new ip. If you don't want to setup the function you can just run this one-liner version each time you start a new wsl instance.\n```\n$wslIP = wsl -e bash -c \"ip route | grep default | awk '{print `$3}'\"; setx OLLAMA_HOST $wslIP /M; Write-Host \"Ollama bound to: $wslIP\"\n```\n\n\n### \"Can I run non-Ollama models?\"\n\nThe api calls are done through the openai API v1 chat completion endpoints, this is the most widely used LLM API specification in the world and it is compatable with Ollama, OpenAI (gpt models), Deepseek, and more. You can easily change this through the --setup command. Unfortunately it lacks compatability with Anthropic models, support for these will have to be added in the future. \n\n---\n### Usage\nAvailable options:\n\n```\nUsage: termai [options] [query...]\n\nArguments:\n  query        Direct prompt to Ollama (skips terminal context)\n\nOptions:\n  -n <number>  Number of command blocks to retrieve (default: \"1\")\n  -p <prompt>  Custom prompt (default: \"Explain this terminal output.\")\n  -m <model>   Specify an Ollama model (default: \"llama3.1:latest\")\n  -c           Make explanation concise\n  --deep       Use DeepSeek model (cloud hosted, fast, powerful)\n  --setup      Run interactive setup\n  --config     Display current configuration\n  -h, --help   display help for command\n```\n### Examples\n\n```\nlglen@omen-lg:~/termai$ echo 'what is 2+2'\nwhat is 2+2\n```\n```\nlglen@omen-lg:~/termai$ termai\n> Querying llama3.1:latest at http://localhost:11434...\n\nThis terminal output is showing the result of running a command in the Linux or Unix terminal.\n\nHere's what's happening:\n\n1. `lglen` is the username of the user currently logged into the system.\n2. `@omen-lg:` is the hostname (or network node name) of the computer they are using.\n3. `~/termai` is the current working directory, which means the user is currently in their home directory (`~`) and has a subdirectory named `termai`.\n4. The command `echo 'what is 2+2'` is being run. `echo` is a built-in Linux/Unix command that prints its arguments to the console.\n5. The string `'what is 2+2'` is passed as an argument to the `echo` command, and it's printed to the console verbatim.\n\nIn other words, the terminal is simply echoing back what was typed, without performing any arithmetic operations or calculations on the input. The output is exactly what was entered: \"what is 2+2\".\n```\ncan use n>1 to add previous prompts/output into context\n```\nlglen@omen-lg:~/termai$ termai -n 2 -p 'only explain the command being run'\n> Querying llama3.1:latest at http://localhost:11434...\n\nThe command being run is `echo 'what is 2+2'`.\n```\nanything typed after 'termai' without arguments will be treated as a prompt, wrapping in quotes ('') is optional. This let's you query ollama or your model like normal without any terminal output\n```\nlglen@omen-lg:~/termai$ termai what is the capital of south africa?\n> Querying llama3.1:latest at http://localhost:11434...\n\nThe capital of South Africa is Pretoria, although Cape Town serves as the legislative seat and Bloemfontein is the judicial seat. This unique arrangement is known as a \"tripartite capital\" or a \"tricameral system,\" where:\n\n* Pretoria (Tshwane) serves as the administrative capital\n* Cape Town serves as the legislative capital (where Parliament meets)\n* Bloemfontein serves as the judicial capital (where the Supreme Court of Appeal is located)\n\nSo, depending on the context, you might hear different answers!\n```\n### More Info\nSo far this project only supports bash terminals but I plan to add support for powershell as well."
+    },
+    {
+      "id": 1144653333,
+      "name": "github-copilot-agent-demos",
+      "description": "Github copilot agent demos",
+      "html_url": "https://github.com/LaishGlenberg/github-copilot-agent-demos",
+      "language": "Python",
+      "stargazers_count": 0
+    },
+    {
+      "id": 1032784446,
+      "name": "find-open-seats-python",
+      "description": "Check every 10 minutes if a seat opened up in classes of your choosing using API endpoints and python.",
+      "html_url": "https://github.com/LaishGlenberg/find-open-seats-python",
+      "language": "Python",
+      "stargazers_count": 2
+    },
+    {
+      "id": 1095751927,
+      "name": "CSE476-final-project",
+      "description": "CSE 475 final project",
+      "html_url": "https://github.com/LaishGlenberg/CSE476-final-project",
+      "language": "Jupyter Notebook",
+      "stargazers_count": 0
+    },
+    {
+      "id": 1106124515,
+      "name": "image-moment-react-site",
+      "description": "Interactive mage moment visualization site built with react.",
+      "html_url": "https://github.com/LaishGlenberg/image-moment-react-site",
+      "language": "TypeScript",
+      "stargazers_count": 0,
+      "readme": "# React + TypeScript + Vite\n\nThis template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.\n\nCurrently, two official plugins are available:\n\n- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh\n- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh\n\n## React Compiler\n\nThe React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).\n\n## Expanding the ESLint configuration\n\nIf you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:\n\n```js\nexport default defineConfig([\n  globalIgnores(['dist']),\n  {\n    files: ['**/*.{ts,tsx}'],\n    extends: [\n      // Other configs...\n\n      // Remove tseslint.configs.recommended and replace with this\n      tseslint.configs.recommendedTypeChecked,\n      // Alternatively, use this for stricter rules\n      tseslint.configs.strictTypeChecked,\n      // Optionally, add this for stylistic rules\n      tseslint.configs.stylisticTypeChecked,\n\n      // Other configs...\n    ],\n    languageOptions: {\n      parserOptions: {\n        project: ['./tsconfig.node.json', './tsconfig.app.json'],\n        tsconfigRootDir: import.meta.dirname,\n      },\n      // other options...\n    },\n  },\n])\n```\n\nYou can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:\n\n```js\n// eslint.config.js\nimport reactX from 'eslint-plugin-react-x'\nimport reactDom from 'eslint-plugin-react-dom'\n\nexport default defineConfig([\n  globalIgnores(['dist']),\n  {\n    files: ['**/*.{ts,tsx}'],\n    extends: [\n      // Other configs...\n      // Enable lint rules for React\n      reactX.configs['recommended-typescript'],\n      // Enable lint rules for React DOM\n      reactDom.configs.recommended,\n    ],\n    languageOptions: {\n      parserOptions: {\n        project: ['./tsconfig.node.json', './tsconfig.app.json'],\n        tsconfigRootDir: import.meta.dirname,\n      },\n      // other options...\n    },\n  },\n])\n```\n"
+    },
+    {
+      "id": 1076888280,
+      "name": "leetcode-solution-API",
+      "description": "NodeJS code that quries leetcode solution graphql endpoints, can search for specific solutions in different programming languages",
+      "html_url": "https://github.com/LaishGlenberg/leetcode-solution-API",
+      "language": "Python",
+      "stargazers_count": 1
+    },
+    {
+      "id": 1076873035,
+      "name": "ASU-prof-data-machine-learning",
+      "description": "Machine learning algorithms trained on the ASU faculty data with the weighted RMP score as a predictor",
+      "html_url": "https://github.com/LaishGlenberg/ASU-prof-data-machine-learning",
+      "language": "Python",
+      "stargazers_count": 0
+    },
+    {
+      "id": 1076860189,
+      "name": "ASU-faculty-RateMyProfessor-API",
+      "description": "Node js code that queries ASU faculty website API to get professor data. Also includes code for Rate My Professor API and get ASU faculty RMP scores. Lastly, you can find publication, citation, h-index info from openAlex.",
+      "html_url": "https://github.com/LaishGlenberg/ASU-faculty-RateMyProfessor-API",
+      "language": "TypeScript",
+      "stargazers_count": 0
+    },
+    {
+      "id": 1001542202,
+      "name": "Datvis_Matrix_Tool",
+      "description": "",
+      "html_url": "https://github.com/LaishGlenberg/Datvis_Matrix_Tool",
+      "language": "JavaScript",
+      "stargazers_count": 1
+    },
+    {
+      "id": 1036712608,
+      "name": "neural-net-builder",
+      "description": "Built in React, create your own neural networks and learn how models train.",
+      "html_url": "https://github.com/LaishGlenberg/neural-net-builder",
+      "language": "HTML",
+      "stargazers_count": 1
+    },
+    {
+      "id": 1039845400,
+      "name": "convert-inline-to-css",
+      "description": "Setting up tasks with key bindings in VSCode. This project contains a bash script for converting inline jsx style syntax into CSS rule syntax.",
+      "html_url": "https://github.com/LaishGlenberg/convert-inline-to-css",
+      "language": "Shell",
+      "stargazers_count": 0
+    },
+    {
+      "id": 1028882206,
+      "name": "find-open-seats-ASU-Nodejs",
+      "description": "Get updated when seats open for a class or classes. Uses the ntfy mobile app to send push notifications.",
+      "html_url": "https://github.com/LaishGlenberg/find-open-seats-ASU-Nodejs",
+      "language": "JavaScript",
+      "stargazers_count": 1
+    },
+    {
+      "id": 961200326,
+      "name": "cse445_a4",
+      "description": "",
+      "html_url": "https://github.com/LaishGlenberg/cse445_a4",
+      "language": null,
+      "stargazers_count": 0
+    },
+    {
+      "id": 932526162,
+      "name": "CSE330_Projects",
+      "description": "",
+      "html_url": "https://github.com/LaishGlenberg/CSE330_Projects",
+      "language": null,
+      "stargazers_count": 0
+    },
+    {
+      "id": 874712785,
+      "name": "leetcode_practice",
+      "description": "leet code practice code",
+      "html_url": "https://github.com/LaishGlenberg/leetcode_practice",
+      "language": null,
+      "stargazers_count": 0
+    },
+    {
+      "id": 677649679,
+      "name": "PassThruDemo",
+      "description": "Demonstration of using object variables to control when an object can pass through something",
+      "html_url": "https://github.com/LaishGlenberg/PassThruDemo",
+      "language": null,
+      "stargazers_count": 0
+    },
+    {
+      "id": 671759429,
+      "name": "ObjectPickingToolsBugDemo",
+      "description": "An example game that demonstrates a bug with the \"pick Nth object\" action of the \"ObjectPickingTools\" extension.",
+      "html_url": "https://github.com/LaishGlenberg/ObjectPickingToolsBugDemo",
+      "language": null,
+      "stargazers_count": 0
+    }
+  ]
+}
