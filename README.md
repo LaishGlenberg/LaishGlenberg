@@ -5,4 +5,12 @@ I'm a software engineer with a B.S. in computer science, currently pursuing a ma
 For a full list go to my github io website, but here are a few of my notable projects (will link later)
 
 - Python, class open seat finder script that runs on raspberry pi, sends notifications through ntfy app (very helpful)
-- 
+- Firebase mcp server
+- git changelog generator (extremely fast)
+- bing image search api (for agents)
+- termai, in terminal agent with command output buffer
+- neural net builder website
+- matrix operations website
+- image moments website
+- professor data and rating gathering tools
+- leetcode solution api
