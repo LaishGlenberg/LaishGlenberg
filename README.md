@@ -13,7 +13,7 @@ Notable Projects:
   - [bing-image-helper](https://github.com/LaishGlenberg/bing-image-helper): node js sdk for interacting with internal bing image api used for agent grounding (not for prod use)
   - [find-open-seats-python](https://github.com/LaishGlenberg/find-open-seats-python): python script that hooks into ASU class search api catalog and uses ntfy to send notifications (built to run on raspberry pi)
  
-- useful but WIP or broken
+- useful but WIP, DEP or MISC
   - [keep-cache-alive](https://github.com/LaishGlenberg/keep-cache-alive): vscode extension for enabling "loop" behavior in github copilot gui sidebar (probably not necessary any more)
   - [firebase-emulator-mcp](https://github.com/LaishGlenberg/firebase-emulator-mcp): node js mcp server for firebase emulators
   - [split-image-to-pdf](https://github.com/LaishGlenberg/split-image-to-pdf): a cli tool for splitting images into pdfs (meh)
