@@ -51,7 +51,7 @@ export default function FeaturedRepos({ repos }) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Open Repository ↗
+                Open Repository <span className="featured-card__arrow">↗</span>
               </a>
               {repo.stargazers_count > 0 && (
                 <span className="featured-card__stars">
