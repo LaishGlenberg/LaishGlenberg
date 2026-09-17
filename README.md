@@ -1,6 +1,10 @@
-## Site
+## About Me
 
-The active site is a React/Vite app served via GitHub Pages. The visual theme is defined in `src/index.css`. The root static files (`index-static.html`, `styles.css`, `script.js`) are legacy and will be removed in a separate cleanup.
+I'm a software engineer with a B.S. in computer science, currently pursuing a masters degree at Arizona State University. My main focus is web development (fullstack) and AI engineering, although I like to dabble in many different disciplines like creating vs code extensions, mcp servers, npm packages, and a lot more; as you can see from my vast amount of repositories.
+
+**Personal Github Site:** https://laishglenberg.github.io/LaishGlenberg/
+
+### Notable Projects:
 
 - **genuinely useful**
   - [exa-cli](https://github.com/LaishGlenberg/exa-cli): exa web search cli for agents (ports exa's web mcp to typescript cli)
@@ -28,3 +32,7 @@ The active site is a React/Vite app served via GitHub Pages. The visual theme is
   - [rate-my-professor-vs-experience-python-ML](https://github.com/LaishGlenberg/rate-my-professor-vs-experience-python-ML): stub linking to my 3 ipynb notebooks detailing lengthy ML report comparing teaching experience to rate my professor score
 
 For a full list go to my github io website.
+
+## Site
+
+The active site is a React/Vite app served via GitHub Pages. The visual theme is defined in `src/index.css`. The root static files (`index-static.html`, `styles.css`, `script.js`) are legacy and will be removed in a separate cleanup.
