@@ -7,8 +7,8 @@ export default function RepoGrid({ repos }) {
 
   return (
     <div className="repo-grid">
-      {repos.map((repo) => (
-        <RepoCard key={repo.id} repo={repo} />
+      {repos.map((repo, index) => (
+        <RepoCard key={repo.id} repo={repo} index={index} />
       ))}
     </div>
   );
