@@ -1,7 +1,9 @@
+import { useState } from "react";
+
 const ACCENT_HUES = [260, 190, 30, 150, 340, 60];
 
 export default function RepoCard({ repo, index }) {
-  const [imgFailed, setImgFailed] = React.useState(false);
+  const [imgFailed, setImgFailed] = useState(false);
   const accentHue = ACCENT_HUES[index % 6];
 
   const description =

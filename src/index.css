@@ -140,7 +140,7 @@ body::after {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 40px;
+  width: 100px;
   height: 2px;
   background: var(--accent);
   border-radius: 1px;
@@ -252,7 +252,7 @@ h2 {
 .hero__content h1 {
   margin: 0;
   font-size: clamp(1.6rem, 2.6vw, 2.4rem);
-  font-weight: 700;
+  font-weight: 2000;
   letter-spacing: -0.025em;
   background: linear-gradient(135deg, var(--text) 50%, var(--muted));
   -webkit-background-clip: text;
@@ -355,6 +355,7 @@ h2 {
   gap: 0.7rem;
   min-height: 280px;
   position: relative;
+  overflow: hidden;
   transition: border-color var(--duration) var(--easing),
     transform var(--duration) var(--easing);
 }
@@ -419,20 +420,37 @@ h2 {
   max-height: 200px;
   overflow-y: auto;
   position: relative;
-  -webkit-mask-image: linear-gradient(
+}
+
+.featured-card__readme::before,
+.featured-card__readme::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 24px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.featured-card__readme::before {
+  top: 0;
+  background: linear-gradient(
     to bottom,
-    transparent 0%,
-    black 6%,
-    black 94%,
-    transparent 100%
+    rgba(0, 0, 0, 0.2),
+    transparent
   );
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    black 6%,
-    black 94%,
-    transparent 100%
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+.featured-card__readme::after {
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.2),
+    transparent
   );
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
 }
 
 .featured-card__readme::-webkit-scrollbar {
@@ -463,6 +481,7 @@ h2 {
 .featured-card__markdown {
   line-height: 1.55;
   overflow-x: auto;
+  overflow-y: hidden;
   overflow-wrap: break-word;
 }
 
@@ -533,12 +552,16 @@ h2 {
   padding: 0.55rem;
   overflow-x: auto;
   margin: 0 0 0.45rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .featured-card__markdown pre code {
   background: none;
   padding: 0;
   font-size: 0.8rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .featured-card__markdown a {
@@ -721,20 +744,6 @@ h2 {
     );
   position: relative;
   border-bottom: 1px solid var(--border);
-}
-
-.repo-card__cover::after {
-  content: "</>";
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.12);
-  font-weight: 700;
-  letter-spacing: 0.05em;
 }
 
 .repo-card__body {
