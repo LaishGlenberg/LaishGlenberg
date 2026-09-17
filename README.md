@@ -1,10 +1,6 @@
-## About Me
+## Site
 
-I'm a software engineer with a B.S. in computer science, currently pursuing a masters degree at Arizona State University. My main focus is web development (fullstack) and AI engineering, although I like to dabble in many different disciplines like creating vs code extensions, mcp servers, npm packages, and a lot more; as you can see from my vast amount of repositories.
-
-**Personal Github Site:** https://laishglenberg.github.io/LaishGlenberg/
-
-### Notable Projects:
+The active site is a React/Vite app served via GitHub Pages. The visual theme is defined in `src/index.css`. The root static files (`index-static.html`, `styles.css`, `script.js`) are legacy and will be removed in a separate cleanup.
 
 - **genuinely useful**
   - [exa-cli](https://github.com/LaishGlenberg/exa-cli): exa web search cli for agents (ports exa's web mcp to typescript cli)
