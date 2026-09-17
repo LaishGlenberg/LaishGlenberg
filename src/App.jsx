@@ -10,20 +10,29 @@ export default function App() {
     <>
       <Hero />
       <main className="container">
-        <div className="repo-layout">
-          <section className="repo-layout__main">
-            <FeaturedRepos repos={repos} />
-          </section>
-          <aside className="repo-layout__sidebar">
-            <h2>My Repositories</h2>
-            <p className="section-intro">
-              Each card includes a space for a project image. Replace
-              placeholder files in <code>assets/images/</code> with your own
-              screenshots.
-            </p>
-            <RepoGrid repos={repos} />
-          </aside>
-        </div>
+        <section
+          className="featured-section"
+          aria-labelledby="featured-heading"
+        >
+          <div className="section-heading">
+            <h2 id="featured-heading">Featured Repos</h2>
+          </div>
+          <FeaturedRepos repos={repos} />
+        </section>
+        <section
+          className="repos-section"
+          aria-labelledby="repos-heading"
+        >
+          <div className="section-heading">
+            <h2 id="repos-heading">My Repositories</h2>
+          </div>
+          <p className="section-intro">
+            Each card includes a space for a project image. Replace
+            placeholder files in <code>assets/images/</code> with your own
+            screenshots.
+          </p>
+          <RepoGrid repos={repos} />
+        </section>
       </main>
     </>
   );

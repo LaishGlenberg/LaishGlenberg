@@ -6,24 +6,26 @@ export default function FeaturedRepos({ repos }) {
 
   if (featured.length === 0) {
     return (
-      <aside className="featured">
-        <h3 className="featured__title">Featured Repos</h3>
+      <div className="featured">
         <p className="status">
           No featured repos yet. Add repo names to{" "}
           <code>src/config.js</code>.
         </p>
-      </aside>
+      </div>
     );
   }
 
   return (
-    <aside className="featured">
-      <h3 className="featured__title">Featured Repos</h3>
+    <div className="featured">
       <div className="featured__list">
-        {featured.map((repo) => (
-          <article key={repo.id} className="featured-card">
+        {featured.map((repo, index) => (
+          <article
+            key={repo.id}
+            className="featured-card"
+            style={{ "--card-index": index }}
+          >
             <div className="featured-card__header">
-              <h4 className="featured-card__name">{repo.name}</h4>
+              <h3 className="featured-card__name">{repo.name}</h3>
               {repo.language && (
                 <span className="featured-card__lang">{repo.language}</span>
               )}
@@ -60,6 +62,6 @@ export default function FeaturedRepos({ repos }) {
           </article>
         ))}
       </div>
-    </aside>
+    </div>
   );
 }
