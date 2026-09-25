@@ -6,13 +6,17 @@ I'm a software engineer with a B.S. in computer science, currently pursuing a ma
 
 ### Notable Projects:
 
+As of right now, **pi-command-cli** is kind of my flagship personal project
+
 - **genuinely useful**
+  - [pi-parse-commands](https://github.com/LaishGlenberg/pi-parse-commands): deconstruct chained bash commands into multi-line entries
+    - **npm**: [@lglen/pi-parse-commands](https://www.npmjs.com/package/@lglen/pi-parse-commands)
   - [exa-cli](https://github.com/LaishGlenberg/exa-cli): exa web search cli for agents (ports exa's web mcp to typescript cli)
     - **npm**: [@lglen/exa-cli](https://www.npmjs.com/package/@lglen/exa-cli)
   - [pi-sudo-helper](https://github.com/LaishGlenberg/pi-sudo-helper): pi extension for enabling `sudo` command
   - [pi-command-cli](https://github.com/LaishGlenberg/pi-command-cli): a cli tool for making pi startup command more streamlined + the ability to save command profiles
     - **npm**: [@lglen/pi-command-cli](https://www.npmjs.com/package/@lglen/pi-command-cli)
-  - [awk-changelog-tool](https://github.com/LaishGlenberg/awk-changelog-tool): npx cli tool that generates git changelogs extremely fast with built in gh cli integration for pr descriptions (lowkey broken rn lol)
+  - [awk-changelog-tool](https://github.com/LaishGlenberg/awk-changelog-tool): npx cli tool that generates git changelogs extremely fast with built in gh cli integration for pr descriptions
     - **npm**: [@lglen/awk-changelog-tool](https://www.npmjs.com/package/@lglen/awk-changelog-tool)
   - [bing-image-helper](https://github.com/LaishGlenberg/bing-image-helper): node js sdk for interacting with internal bing image api used for agent grounding (not for prod use)
     - **npm**: [@lglen/bing-image-helper](https://www.npmjs.com/package/@lglen/bing-image-helper)
