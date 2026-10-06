@@ -8,14 +8,18 @@ I'm a software engineer with a B.S. in computer science, currently pursuing a ma
 
 As of right now, **pi-command-cli** is kind of my flagship personal project
 
-- **genuinely useful**
+- **pi coding agent related**
+  - [pi-to-md-cli](https://github.com/LaishGlenberg/pi-to-md-cli): typescript cli for converting pi sessions to markdown
+    - **npm**: [@lglen/pi-to-md-cli](https://www.npmjs.com/package/@lglen/pi-to-md-cli)
   - [pi-parse-commands](https://github.com/LaishGlenberg/pi-parse-commands): deconstruct chained bash commands into multi-line entries
     - **npm**: [@lglen/pi-parse-commands](https://www.npmjs.com/package/@lglen/pi-parse-commands)
-  - [exa-cli](https://github.com/LaishGlenberg/exa-cli): exa web search cli for agents (ports exa's web mcp to typescript cli)
-    - **npm**: [@lglen/exa-cli](https://www.npmjs.com/package/@lglen/exa-cli)
   - [pi-sudo-helper](https://github.com/LaishGlenberg/pi-sudo-helper): pi extension for enabling `sudo` command
   - [pi-command-cli](https://github.com/LaishGlenberg/pi-command-cli): a cli tool for making pi startup command more streamlined + the ability to save command profiles
     - **npm**: [@lglen/pi-command-cli](https://www.npmjs.com/package/@lglen/pi-command-cli)
+   
+- **other useful projects**
+  - [exa-cli](https://github.com/LaishGlenberg/exa-cli): exa web search cli for agents (ports exa's web mcp to typescript cli)
+    - **npm**: [@lglen/exa-cli](https://www.npmjs.com/package/@lglen/exa-cli)
   - [awk-changelog-tool](https://github.com/LaishGlenberg/awk-changelog-tool): npx cli tool that generates git changelogs extremely fast with built in gh cli integration for pr descriptions
     - **npm**: [@lglen/awk-changelog-tool](https://www.npmjs.com/package/@lglen/awk-changelog-tool)
   - [bing-image-helper](https://github.com/LaishGlenberg/bing-image-helper): node js sdk for interacting with internal bing image api used for agent grounding (not for prod use)
@@ -36,7 +40,3 @@ As of right now, **pi-command-cli** is kind of my flagship personal project
   - [rate-my-professor-vs-experience-python-ML](https://github.com/LaishGlenberg/rate-my-professor-vs-experience-python-ML): stub linking to my 3 ipynb notebooks detailing lengthy ML report comparing teaching experience to rate my professor score
 
 For a full list go to my github io website.
-
-## Site
-
-The active site is a React/Vite app served via GitHub Pages. The visual theme is defined in `src/index.css`. The root static files (`index-static.html`, `styles.css`, `script.js`) are legacy and will be removed in a separate cleanup.
