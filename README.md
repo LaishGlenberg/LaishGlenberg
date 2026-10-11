@@ -6,16 +6,17 @@ I'm a software engineer with a B.S. in computer science, currently pursuing a ma
 
 ### Notable Projects:
 
-As of right now, **pi-command-cli** is kind of my flagship personal project
+As of right now, **pi-command-cli** is my main personal project
 
 - **pi coding agent related**
+  - [pi-command-cli](https://github.com/LaishGlenberg/pi-command-cli): a cli tool for making pi startup command more streamlined + the ability to save command profiles
+    - **npm**: [@lglen/pi-command-cli](https://www.npmjs.com/package/@lglen/pi-command-cli)
   - [pi-to-md-cli](https://github.com/LaishGlenberg/pi-to-md-cli): typescript cli for converting pi sessions to markdown
     - **npm**: [@lglen/pi-to-md-cli](https://www.npmjs.com/package/@lglen/pi-to-md-cli)
   - [pi-parse-commands](https://github.com/LaishGlenberg/pi-parse-commands): deconstruct chained bash commands into multi-line entries
     - **npm**: [@lglen/pi-parse-commands](https://www.npmjs.com/package/@lglen/pi-parse-commands)
   - [pi-sudo-helper](https://github.com/LaishGlenberg/pi-sudo-helper): pi extension for enabling `sudo` command
-  - [pi-command-cli](https://github.com/LaishGlenberg/pi-command-cli): a cli tool for making pi startup command more streamlined + the ability to save command profiles
-    - **npm**: [@lglen/pi-command-cli](https://www.npmjs.com/package/@lglen/pi-command-cli)
+
    
 - **other useful projects**
   - [exa-cli](https://github.com/LaishGlenberg/exa-cli): exa web search cli for agents (ports exa's web mcp to typescript cli)
