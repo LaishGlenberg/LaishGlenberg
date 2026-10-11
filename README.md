@@ -2,8 +2,6 @@
 
 I'm a software engineer with a B.S. in computer science, currently pursuing a masters degree at Arizona State University. My main focus is web development (fullstack) and AI engineering, although I like to dabble in many different disciplines like creating vs code extensions, mcp servers, npm packages, and a lot more; as you can see from my vast amount of repositories.
 
-**Personal Github Site:** https://laishglenberg.github.io/LaishGlenberg/
-
 ### Notable Projects:
 
 As of right now, **pi-command-cli** is my main personal project
@@ -40,4 +38,4 @@ As of right now, **pi-command-cli** is my main personal project
   - [neural-net-builder](https://github.com/LaishGlenberg/neural-net-builder): website for building neural networks and training them interactively
   - [rate-my-professor-vs-experience-python-ML](https://github.com/LaishGlenberg/rate-my-professor-vs-experience-python-ML): stub linking to my 3 ipynb notebooks detailing lengthy ML report comparing teaching experience to rate my professor score
 
-For a full list go to my github io website.
+**Personal Github Site:** https://laishglenberg.github.io/LaishGlenberg/
