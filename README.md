@@ -7,9 +7,10 @@ I'm a software engineer with a B.S. in computer science, currently pursuing a ma
 
 ### Notable Projects:
 
-As of right now, **pi-command-cli** is my main personal project
+As of right now, **pi-command-cli** and **pi-agent-graph-builder** are my main personal project
 
 - **pi coding agent related**
+  - [pi-agent-graph-builder](https://github.com/LaishGlenberg/pi-agent-graph): a custom python framework that builds and launches pi agents for easy orchestration
   - [pi-command-cli](https://github.com/LaishGlenberg/pi-command-cli): a cli tool for making pi startup command more streamlined + the ability to save command profiles
     - **npm**: [@lglen/pi-command-cli](https://www.npmjs.com/package/@lglen/pi-command-cli)
   - [pi-to-md-cli](https://github.com/LaishGlenberg/pi-to-md-cli): typescript cli for converting pi sessions to markdown
