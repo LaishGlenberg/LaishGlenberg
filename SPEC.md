@@ -29,32 +29,45 @@ overall. Real content and real media are explicitly out of scope for this pass.
 
 ## 3. Direction
 
-**Working name: "Gallery wall".** A white room, black type, work hung on it. The only ornament is
-motion. Type does the design work: one enormous line per screen, one small text size, nothing in
-between. Pictures are the only colour on the page.
+**Dealt: "Type and nothing else"** (seed 1583341935, personal-portfolio, quiet). A white field, black
+type, no hero image. The first screen is words and space; pictures arrive later, large and few, as
+relief. The one loud moment is the masked headline.
+
+The deal: hero "Stacked name, two inks"; type Cabinet Grotesk; palette kept (white/black); sections
+work "Loose scatter with pauses" → about "Two columns, highlighted words" → list "Two-ended rows" →
+contact "The email as display type"; motion "Masked headline"; atmosphere photography from the
+Architecture set.
+
+**Redraw:** `section:work` was dealt as a quiet 560px ledger with 300px hover previews. Five visual
+projects cannot carry their previews or the brief's one-project-per-block claim at that size, so it
+was redrawn to `work-loose-scatter`: one project per block at its own width and side, with pauses.
+Sizes are mapped to this page's five type steps and the mixed 4:5 ratio becomes landscape, because
+every source image is landscape. No other slot was redrawn.
+
+**Adaptations, recorded:** the dealt hero has no image and leaves the bottom-left empty; the brief
+asks for a portrait, so it sits small in that corner and closes the void. The dealt contact is an
+email set as display type; there is no public email, so the display line carries the name and the
+links carry contact. The dealt `list` column is 520px wide; 23 repos use a full-width ledger so the
+right half is not empty. The about's 3–4 highlight colours become one `--wash` tone because the
+palette is fixed to white and black.
 
 References are the discipline of Figma's site and Swiss editorial portfolios, not their branding.
 No accent colour, no gradients, no borders, no shadows, no icons, no pills, no numbered labels, no
 monospace outside literal code.
 
-The skill's `draw.mjs` is run once with `--keep palette` (white/black is fixed by the brief) to deal
-the type system and section compositions. The layout below is the baseline; the deal may improve it,
-and every redraw gets a stated reason.
-
 ## 4. Design system
 
 ### Type — one family
 
-**Instrument Sans** (Google Fonts, variable). Neutral grotesque with more character than Inter and
-better display behaviour than Manrope. Fallback stack: `"Helvetica Neue", Arial, sans-serif`.
-Weights 400 and 500 only.
+**Cabinet Grotesk** (Fontshare, free), the dealt face: 800 display, 500 emphasis, 400 text.
+Fallback stack: `"Helvetica Neue", Arial, sans-serif`. Loaded from Fontshare with `display=swap`.
 
 | Role | Size | Leading | Tracking |
 | --- | --- | --- | --- |
-| Display (h1) | `clamp(3.25rem, 9vw, 8.5rem)` | 0.92 | -0.045em |
-| Section title (h2) | `clamp(2rem, 4.5vw, 4rem)` | 0.98 | -0.03em |
-| Project title (h3) | `clamp(1.6rem, 3vw, 2.75rem)` | 1.0 | -0.02em |
-| Body | 17px / 16px mobile | 1.6 | 0 |
+| Display (h1) | `clamp(6.5rem, 15vw, 14.4rem)`; 21vw under 680px | 0.82 | -0.04em |
+| Section title (h2) | `clamp(2.5rem, 4vw, 3.75rem)` | 0.95 | -0.03em |
+| Project title (h3) | `clamp(1.75rem, 3vw, 2.75rem)` | 1.0 | -0.02em |
+| Body | 18px | 1.6 | 0 |
 | Small (meta, captions) | 14px | 1.45 | 0 |
 
 Five sizes total. Statements are `<p>` at <= 32px. Numbers use `font-variant-numeric: tabular-nums`.
@@ -83,31 +96,27 @@ steps, never lines or shadows. Corners are square.
 ## 5. Page architecture
 
 1. **Skip link** (visually hidden until focused).
-2. **Nav** — wordmark left, `Work / About / Contact` right. Plain, static, no bar, no blur, one
-   underline-on-hover treatment. No button.
-3. **Hero** — min-height `100svh`, asymmetric 12-col:
-   - `h1` "Laish Glenberg" at display size, cols 1–8.
-   - Supporting sentence at 20px, cols 1–5: what he does, plainly. This also satisfies the
-     "name-only title" check.
-   - Portrait, 3:4, cols 9–12, offset down.
-   - Actions: `See the work` (solid ink, square) + `GitHub` (text link with arrow).
-   - One small fact line: `Tempe, AZ · M.S. Computer Science, ASU`.
-4. **Selected work** — heading + five `<article>` spreads, each with a heading, one-line description,
-   meta (stack/year), real link and 16:10 media. Five distinct compositions, no two neighbours alike:
-   1. title full-width, media full-width below;
-   2. media 60% left, title + copy right;
-   3. title left, copy right, media offset right below;
-   4. media small and offset, title large and low;
-   5. full-bleed media, caption row beneath.
-   Projects and their real one-liners come from `README.md` (exa-cli, pi-command-cli,
-   firebase-emulator-mcp, find-open-seats-python, termai) so no copy is invented.
-5. **About** — 2-column: heading left; a 28–32px paragraph right plus three fact rows
-   (Focus / Currently / Elsewhere). One section, no cards.
-6. **All repositories** — heading, plain-text language filter row, then the 23 repos as a list:
-   row = name (500) + description (muted, hidden when missing) + language + stars. Hover paints the
-   row `--wash` and moves the arrow. Mobile stacks name over meta. No card grid.
+2. **Nav** — monogram `LG` top-left; `Work / About / All repos` top-right. Plain, static, no bar,
+   no blur, one underline-on-hover treatment. No button.
+3. **Hero** — min-height `100svh`, no image above the fold:
+   - `h1` on two authored lines, `Laish` / `Glenberg`, at display size, line one in `--muted`, line
+     two in full ink, flush left on the margin and starting 14% down.
+   - Supporting sentence, 17px, max 30ch, bottom-right on columns 9–12: what he does, plainly.
+   - `See the work` (solid ink button, square, 44px+) under the sentence; `GitHub` as a text link.
+   - Portrait, 3:4, small (about 20% width), bottom-left in the corner the blueprint leaves empty.
+4. **Selected work** — heading, then five `<article>` blocks from `work-loose-scatter`: each image
+   at its own width and side, project name above at the h3 step, one-line description and meta below,
+   a real repository link. Placements cycle left half, right third (raised), inset centre; 120–160px
+   between blocks. Media is 16:9. Projects and one-liners come from `README.md` (exa-cli,
+   pi-command-cli, firebase-emulator-mcp, find-open-seats-python, termai). No cards, no numbers.
+5. **About** — heading; 90–120 words at the lead size (22–32px) in two columns, ink with `--wash`
+   highlights on place, discipline and tools; final sentence highlighted and linked to GitHub.
+6. **All repositories** — heading, plain-text language filter row, then a full-width ledger for all
+   23 repos: name at columns 1–4, description 5–9, language at 10, stars at 11–12, fixed starts and
+   no drawn lines. Hover paints the row `--wash`. Mobile stacks name over meta and description.
    The filter is the page's one live thing: real data, keyboard accessible, works without motion.
-7. **Footer** — black field, name repeated at display size, email, GitHub, LinkedIn, back to top.
+7. **Footer** — black field, a short closing sentence top-left, the name repeated at display size,
+   `Tempe, Arizona` bottom-left, `GitHub / LinkedIn / Back to top` bottom-right. No email.
 
 ## 6. Motion
 
@@ -117,12 +126,13 @@ Tokens: `--ease-out: cubic-bezier(.16,1,.3,1)`, durations 180ms (feedback), 420m
 - **Reveal** hook using `IntersectionObserver` (threshold 0.15, once). Default state is visible; an
   inline script adds `html.js` so hidden state only exists when JS runs. No content is ever trapped.
 - **Entrances:** heading, then body +80ms, then media +140ms, then meta +200ms; 20px rise, opacity.
-- **Signature move:** each project's media wipes in with `clip-path` bottom-up over 900ms while the
-  image counter-scales 1.08 → 1. Used once per project, nowhere else.
-- **Hero load:** name lines rise 28px in 700ms, staggered 80ms; paragraph +120ms; portrait clip-reveal
-  + slight scale 1.05 → 1 over 900ms; actions +200ms.
-- **Feedback:** buttons invert on hover/active; links get a 1px underline (interaction only); project
-  media scales 1.03 over 600ms on hover; repo rows shift background and arrow.
+- **Signature move (dealt): masked headline.** Each authored line of the `h1` rises from behind its
+  own baseline: 900ms, `--ease-out`, second line +110ms, 150ms after load. Supporting sentence,
+  actions and portrait fade up afterwards; nothing else performs on load.
+- **Moving picture:** the portrait settles from scale 1.06 to 1 over 2.4s while the page loads.
+- **Project media:** enters at scale 1.04 → 1 over 900ms with opacity; hover scales the image 1.02.
+- **Feedback:** buttons invert on hover/active; links get a 1px underline (interaction only); repo
+  rows shift background and arrow.
 - **Repo rows:** stagger 20ms, capped at 240ms total.
 - **Reduced motion:** opacity only, no clip/scale/travel; parallax and hover transforms off.
 - **Performance:** transform/opacity/clip-path only; no layout-affecting animation; no parallax
@@ -141,15 +151,15 @@ Tokens: `--ease-out: cubic-bezier(.16,1,.3,1)`, durations 180ms (feedback), 420m
   ```
 
   Download once with 1.5s spacing and two retries (one probe returned 429), save to
-  `public/assets/images/work/<repo>.png`, crop to 16:10 and compress with `ffmpeg`. These are real
-  previews of the actual repos, not invented screenshots.
+  `public/assets/images/work/<repo>.png`, crop to 16:9 (1200×675, about 3% off each side) and
+  compress with `ffmpeg`. These are real previews of the actual repos, not invented screenshots.
 - If a repo still 429s after retries, fall back to five fixed photo IDs from
   `.agents/skills/design-taste-frontend/library/photos.json` (no search, no browsing) with the same
-  16:10 treatment. Source is noted in the report.
+  16:9 treatment. Source is noted in the report.
 - Portrait: the existing `public/assets/images/profile-placeholder.JPG`, cropped 3:4.
 - No `assets.mjs` search step and no `credits.json` for this pass. `ffmpeg` is used only for batch
   crop/compress, not for effects.
-- Every media frame is 16:10 with `object-fit: cover` and explicit dimensions, so real screenshots
+- Every media frame is 16:9 with `object-fit: cover` and explicit dimensions, so real screenshots
   drop in later without a layout change.
 
 ## 8. Accessibility and performance
@@ -221,8 +231,8 @@ inspector opened and looked at.
 | --- | --- | --- | --- |
 | C0 | `chore: add redesign spec and notes on local tooling` | `SPEC.md`, `.gitignore`, `README.md` tooling note, `skills-lock.json` | `git check-ignore .agents .taste-skill` passes; build still passes; no site source file changed |
 | C1 | `chore: remove obsolete plans, legacy files and tracked build output` | delete `plan.md`, `checklist.md`, `index-static.html`, `styles.css`, `script.js`; untrack `dist/` and ignore it (the deploy workflow rebuilds it) | build passes; no references remain (`rg "index-static\|styles\.css\|script\.js"`); `git status` clean after a build; site still renders |
-| C2 | `feat: add design tokens, nav and hero` | tokens/base/layout CSS, `Nav.jsx`, `Hero.jsx`; old sections still mounted | 0 FAIL; single `h1`; h1 >= 8vw at 1440; nav tab order; hero fold reviewed at 390/768/1440; content visible with JS disabled |
-| C3 | `feat: replace featured cards with selected work` | `SelectedWork.jsx`, `Project.jsx`, `config.js`, 5 media images; delete `FeaturedRepos.jsx`, drop `marked` | 5 compositions visibly different; 5 images load, none broken; links correct; mobile stacking; `rg marked src package.json` empty |
+| C2 | `feat: add design tokens, nav and hero` | tokens/base/layout CSS, `Nav.jsx`, `Hero.jsx`; old sections unmounted | lint 0 FAIL; single `h1`; h1 >= 8vw at 1440; nav tab order; hero fold reviewed at 390/768/1440; content visible with JS disabled. Inspect is run and may still show `few-pictures` (portrait only) and `still-page` (motion lands in C5) — those are the accepted FAILs at this checkpoint |
+| C3 | `feat: add selected work spreads` | `SelectedWork.jsx`, `Project.jsx`, `config.js`, 5 media images; delete `FeaturedRepos.jsx`, drop `marked` | lint 0 FAIL; 5 images load, none broken; placements at different widths/sides; links correct; mobile stacking; `rg marked src package.json` empty. Inspect: no FAIL other than documented `no-footage` WARN |
 | C4 | `feat: add about, repository index and footer` | `About.jsx`, `RepoIndex.jsx`, `Footer.jsx`; delete `RepoGrid.jsx`, `RepoCard.jsx` | all 23 repos render; filter works with keyboard and without motion; missing descriptions omitted; one `h1`; every section titled; full-page screenshots at 3 widths; 0 FAIL |
 | C5 | `feat: add reveal and motion layer` | reveal hook, `motion.css`, hero sequence, signature wipe, hover/focus states | inspector motion count >= 16; reduced-motion screenshots show all content; 4x CPU throttle scroll clean; no layout shift; nothing hidden without JS; 0 FAIL |
 | C6 | `fix: critique round 1` | top three findings from the screenshots | before/after screenshots; report score written down; 0 FAIL |
@@ -243,7 +253,7 @@ inspector opened and looked at.
 2. Write copy deck + token sheet (short, in the report).
 3. Delete old components; scaffold the static page shell and tokens.
 4. Hero static at 1440 / 768 / 390; then each section static. Motion off.
-5. Download and process the 5 GitHub preview images; set 16:10 frames.
+5. Download and process the 5 GitHub preview images; set 16:9 frames.
 6. Add reveal hook, signature wipe, hover/focus states, reduced-motion fallbacks.
 7. Gate + screenshot critique, three rounds maximum; fix top three each round.
 8. Update README site section; report direction, decisions, placeholders and image sources.

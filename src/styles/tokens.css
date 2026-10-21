@@ -1,0 +1,28 @@
+:root {
+  /* Colour */
+  --paper: #ffffff;
+  --ink: #0b0b0c;
+  --muted: #707070;
+  --wash: #f3f3f1;
+
+  /* Type */
+  --font: "Cabinet Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --step-display: clamp(6.5rem, 15vw, 14.4rem);
+  --step-h2: clamp(2.5rem, 4vw, 3.75rem);
+  --step-h3: clamp(1.75rem, 3vw, 2.75rem);
+  --step-body: 1.125rem;
+  --step-small: 0.875rem;
+
+  /* Frame */
+  --gutter: clamp(20px, 4vw, 56px);
+  --max: 1280px;
+  --col-gap: 24px;
+  --section-gap: clamp(96px, 14vh, 200px);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 180ms;
+  --dur-mid: 420ms;
+  --dur-slow: 900ms;
+}

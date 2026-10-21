@@ -1,0 +1,43 @@
+/* Masked headline: the page's one loud moment. */
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .hero__line > span {
+    transform: translateY(105%);
+    animation: line-up var(--dur-slow) var(--ease-out) forwards;
+    animation-delay: calc(var(--i) * 110ms + 150ms);
+  }
+}
+
+@keyframes line-up {
+  to {
+    transform: none;
+  }
+}
+
+/* Everything else arrives quietly, once. */
+
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 700ms var(--ease-out),
+      transform 900ms var(--ease-out);
+    transition-delay: calc(var(--reveal-delay, 0) * 1ms);
+  }
+
+  .js [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__line > span,
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
+  }
+}
