@@ -21,10 +21,16 @@ export default function RepoIndex() {
     <section className="repos" id="repos" aria-labelledby="repos-title">
       <div className="frame">
         <div className="repos__head">
-          <h2 className="section-title" id="repos-title">
+          <h2 className="section-title" id="repos-title" data-reveal>
             All repositories
           </h2>
-          <div className="repos__filters" role="group" aria-label="Filter by language">
+          <div
+            className="repos__filters"
+            role="group"
+            aria-label="Filter by language"
+            data-reveal
+            style={{ "--reveal-delay": 80 }}
+          >
             {GROUPS.map((name) => (
               <button
                 key={name}
@@ -39,9 +45,12 @@ export default function RepoIndex() {
           </div>
         </div>
 
-        <ul className="repo-list">
-          {visible.map((repo) => (
-            <li key={repo.id}>
+        <p className="visually-hidden" aria-live="polite">
+          {visible.length} repositories shown
+        </p>
+        <ul className="repo-list" data-reveal style={{ "--reveal-delay": 120 }}>
+          {visible.map((repo, index) => (
+            <li key={repo.id} style={{ "--i": Math.min(index, 12) }}>
               <a
                 className="repo-row"
                 href={repo.html_url}

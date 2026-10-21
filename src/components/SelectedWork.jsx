@@ -5,7 +5,7 @@ export default function SelectedWork() {
   return (
     <section className="work" id="work" aria-labelledby="work-title">
       <div className="frame">
-        <h2 className="section-title" id="work-title">
+        <h2 className="section-title" id="work-title" data-reveal>
           Selected work
         </h2>
         <div className="work__list">

@@ -140,8 +140,14 @@
   transition: transform var(--dur-slow) var(--ease-out);
 }
 
-.project__media:hover img {
-  transform: scale(1.02);
+@media (prefers-reduced-motion: no-preference) {
+  .project__media:hover img {
+    transform: scale(1.02);
+  }
+
+  .js .project__media:not(.is-in) img {
+    transform: scale(1.04);
+  }
 }
 
 .project__description {
@@ -403,6 +409,7 @@
   grid-column: 1 / 4;
   align-self: end;
   width: min(100%, 220px);
+  overflow: hidden;
 }
 
 .hero__portrait img {

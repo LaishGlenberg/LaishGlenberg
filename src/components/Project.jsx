@@ -6,7 +6,7 @@ export default function Project({ project, index }) {
   return (
     <article className={`project project--${placement}`}>
       <div className="project__inner">
-        <div className="project__head">
+        <div className="project__head" data-reveal>
           <h3 className="project__name">
             <a
               href={project.href}
@@ -31,6 +31,8 @@ export default function Project({ project, index }) {
 
         <a
           className="project__media"
+          data-reveal
+          style={{ "--reveal-delay": 80 }}
           href={project.href}
           target="_blank"
           rel="noopener noreferrer"
@@ -45,7 +47,13 @@ export default function Project({ project, index }) {
           />
         </a>
 
-        <p className="project__description">{project.description}</p>
+        <p
+          className="project__description"
+          data-reveal
+          style={{ "--reveal-delay": 140 }}
+        >
+          {project.description}
+        </p>
       </div>
     </article>
   );

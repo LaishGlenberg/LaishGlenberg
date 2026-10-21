@@ -110,6 +110,27 @@ button {
   transform: translate(-50%, 0);
 }
 
+.fallback {
+  max-width: var(--max);
+  margin-inline: auto;
+  padding: 96px var(--gutter);
+}
+
+.fallback h1 {
+  font-size: var(--step-h2);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.fallback p {
+  margin-top: 20px;
+}
+
+.fallback a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;

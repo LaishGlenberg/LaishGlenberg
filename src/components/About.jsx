@@ -4,10 +4,10 @@ export default function About() {
   return (
     <section className="about" id="about" aria-labelledby="about-title">
       <div className="frame">
-        <h2 className="section-title" id="about-title">
+        <h2 className="section-title" id="about-title" data-reveal>
           About
         </h2>
-        <p className="about__body">
+        <p className="about__body" data-reveal style={{ "--reveal-delay": 80 }}>
           I&rsquo;m a software engineer with a B.S. in computer science, currently
           pursuing a master&rsquo;s at <mark>Arizona State University</mark>. My
           work sits between <mark>fullstack web development</mark> and{" "}

@@ -4,14 +4,16 @@ export default function Footer() {
   return (
     <footer className="footer" id="contact">
       <div className="frame footer__frame">
-        <p className="footer__note">{FOOTER.note}</p>
+        <p className="footer__note" data-reveal>
+          {FOOTER.note}
+        </p>
 
         <div className="footer__bottom">
-          <p className="footer__name">
+          <p className="footer__name" data-reveal style={{ "--reveal-delay": 80 }}>
             <span>Laish</span>
             <span>Glenberg</span>
           </p>
-          <div className="footer__row">
+          <div className="footer__row" data-reveal style={{ "--reveal-delay": 140 }}>
             <p className="footer__place">{SITE.location}</p>
             <ul className="footer__links">
               {FOOTER.links.map((link) => (
