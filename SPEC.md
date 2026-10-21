@@ -1,8 +1,150 @@
 # Spec — White Portfolio Redesign
 
-**Status:** proposed, awaiting approval
+**Status:** implementation in progress — handoff at C5, clean tree
 **Date:** 2026-10-21
 **Scope:** full visual rebuild of the site. Stack, data and links stay.
+
+---
+
+# HANDOFF — read this first
+
+**Branch:** `lg/feat/white-portfolio-redesign` (not pushed, no PR)
+**HEAD:** `264178f feat: add reveal and motion layer`
+**Working tree:** clean (`git status --short` empty)
+**Gate:** `lint.mjs` 0 FAIL / 0 WARN; `inspect.mjs` **0 FAIL, 2 WARN** at 1440, 768, 390.
+**Screenshots to look at:** `.taste-skill/c5b/` (ignored by git). Before shots: `.taste-skill/before/`.
+
+## Where it is
+
+C0–C5 are done and committed. The page is fully built, responsive, and animated. What is left is
+the **look-and-fix critique** (C6), an optional second round (C7), and the **README + final report**
+(C8). No functional work remains.
+
+| # | Commit | Done |
+| --- | --- | --- |
+| C0 | `0205fd1` | spec, `.gitignore`, tooling note, `skills-lock.json` |
+| C1 | `024c7f6` | removed old plans, legacy static files, tracked `dist/` |
+| C2 | `d2d78d3` | tokens/base/layout/motion CSS, Nav, Hero (static) |
+| C3 | `49b8d0a` | SelectedWork + Project, 5 media images, `marked` removed |
+| C4 | `da3c3aa` | About, RepoIndex (filter), Footer; card components removed |
+| C5 | `264178f` | reveal hook, masked headline, portrait settle, hover states, noscript |
+
+## Resume in one command block
+
+```bash
+cd /home/lg/projects/LaishGlenberg
+git checkout lg/feat/white-portfolio-redesign
+(nohup npx vite --port 5199 --strictPort >/tmp/lg-vite.log 2>&1 &)
+# page: http://localhost:5199/LaishGlenberg/  (base path matters)
+node .agents/skills/design-taste-frontend/scripts/inspect.mjs \
+  http://localhost:5199/LaishGlenberg/ --out .taste-skill/round1
+```
+
+The skill lives in `.agents/skills/design-taste-frontend/` on this machine. It is gitignored; a
+fresh clone must reinstall it from `Leonxlnx/taste-skill` (see the README note).
+
+## Next steps, in order
+
+1. **C6 — critique.** Open every screenshot in `.taste-skill/c5b/` (desktop, tablet, mobile, all
+   pages; the `page-NN.jpg` files are contact sheets, not broken layouts). Use
+   `references/critique.md` and write the round in its §4 shape. Score design / usability /
+   creativity / content with its weights and caps. Fix the top three real problems, then re-run
+   lint + inspect and look again. Max three rounds.
+2. **C7 — only if round 1 leaves real problems.** Commit each round separately
+   (`fix: critique round 1`, etc.).
+3. **C8 — docs/report.** Update `README.md`'s Site section (stack, commands, the `.agents/` note).
+   Write the final report into the chat/PR description with: direction and seed, redraws and why,
+   the idea sentence, the live thing, final scores, placeholder inventory, and the two defended
+   WARNs.
+4. Ask the user before any push or PR. The branch has never been pushed.
+
+## Current gate output (do not regress)
+
+- `lint.mjs index.html src` → 0 FAIL, 0 WARN.
+- `inspect.mjs` → 0 FAIL, 2 WARN:
+  - `statement-length` — the About paragraph is 7 lines at 30.2px. **Defence:** it is a biography,
+    not a slogan; the dealt blueprint sets it at 22–32px in two columns. If a later session wants
+    zero WARNs, split it into three shorter paragraphs (do not shrink the composition).
+  - `no-footage` — no video. **Defence:** all media is placeholder stills and the owner said media
+    comes later. Do not add stock footage.
+- Motion: 53 elements moved, 0 `still-page`.
+- Reduced motion: inspector passes (no `reduced-hidden`).
+- 4× CPU check (manual, done): CLS `0.0002`, all 24 `[data-reveal]` elements fired after scrolling
+   to the bottom, no horizontal overflow. A temporary script was used; it is not in the repo.
+
+## Design decisions (do not re-litigate without asking)
+
+- **Direction:** "Type and nothing else", seed 1583341935; hero "Stacked name, two inks"; motion
+  "Masked headline". The sheet is `.taste-skill/direction.json`; reprint with
+  `node .agents/skills/design-taste-frontend/scripts/draw.mjs --show`.
+- **Type:** Cabinet Grotesk (Fontshare), 800/500/400. Five visible steps: 216 / 58 / 43 / 18 / 14px
+  at 1440 (plus the 30px About lead). Do not add faces or sizes casually.
+- **Colour:** `--paper #ffffff`, `--ink #0b0b0c`, `--muted #707070` (meta only), `--ink-muted` on
+  black, `--wash #efefed`. No accent, no gradients, no borders, no shadows, square corners.
+- **Hero:** two authored lines, line 1 muted, line 2 ink; portrait bottom-left; sentence + button
+  bottom-right. The hero is a type poster; the portrait closes the bottom-left void.
+- **Work:** `work-loose-scatter` redraw — five projects at alternating width/side (left 7 cols,
+  right 5 cols raised with a negative margin, inset 9 cols), 16:9 media on a wash mat, h3 above,
+  one-line description below, link in the head. This replaced the dealt 560px ledger, which could
+  not carry the previews (recorded in §3).
+- **About:** two columns, 30px lead, wash `mark` highlights, final sentence is a black-highlighted
+  GitHub link.
+- **Repos:** full-width 12-col ledger, all 23 repos, filter `All / TypeScript / JavaScript / Python /
+  Other`, name 18/500, description 18 ink, language + stars 14 muted, arrow on the right. The filter
+  is the page's live thing.
+- **Footer:** black field, name repeated at `--step-display` on two lines (bookend), note top-left,
+  location + GitHub / LinkedIn / Back to top bottom. No email — the owner has no public one.
+- **Motion:** masked headline is the signature; portrait scale 1.06→1 over 2.4s; support/actions
+  fade at 450ms; sections reveal once via IntersectionObserver (`rootMargin: -5%`, threshold 0.1);
+  project head/media/desc at 0/80/140ms; repo rows stagger 20ms capped at index 12. The `-5%`
+  rootMargin replaced `-12%` because the footer row never fired at max scroll on a phone.
+- **No-JS:** `<noscript>` fallback in `index.html` with the name, sentence, GitHub and LinkedIn.
+
+## Placeholders (must be swapped before launch)
+
+- Five project images: `public/assets/images/work/{exa-cli,pi-command-cli,firebase-emulator-mcp,
+  find-open-seats-python,termai}.png`, 1200×675. They are GitHub social-preview cards downloaded
+  from `https://opengraph.githubassets.com/1/LaishGlenberg/<repo>`, cropped 2:1→16:9 with ffmpeg.
+  They are real previews of the repos, but they duplicate the h3 and description; replace with
+  real screenshots at the same 16:9 ratio and nothing else changes.
+- Portrait: `public/assets/images/profile-placeholder.JPG`, styled as a 3:4 crop. The owner will
+  replace it.
+- Copy: selected-work one-liners and the About text are extrapolated from `README.md`; the owner
+  will rewrite it. The repo index uses `src/repos-data.json`, which is stale (missing exa-cli,
+  pi-command-cli and others) — that is a later content task, not this pass.
+- `public/assets/images/repos/repo-placeholder.JPG` is now unused; delete it in C8 if desired.
+- No `assets.mjs` search, no `credits.json`, no video. Do not add stock imagery.
+
+## Likely critique findings (my own read, not yet scored)
+
+- The GitHub cards duplicate the visible title/description and read like embeds rather than work.
+  This is the placeholder trade-off; note it, do not redesign around it.
+- The portrait is an informal selfie against a formal type system. Placeholder; note it.
+- Tablet (768×1024) leaves a large gap between the name and the bottom row. Check `tablet-fold.jpg`.
+- The About block is long at 30px; the inspector warns. Either defend or split.
+- The repo ledger is 23 rows and makes the page ~8.3 screens; verify it does not feel like a dump.
+- Hero support text is right-aligned (dealt blueprint). It is deliberate; judge from the screenshot.
+
+## Idea sentence (draft for the report)
+
+> On this page, the command line — where these tools live — becomes a page with no interface at
+> all: the first screen is pure type, and the work hangs below it like framed prints.
+
+Live thing: the language filter on the repository index (real data, keyboard accessible, works
+without motion).
+
+## Do not
+
+- Do not push or open a PR without the owner's permission.
+- Do not commit `dist/`, `.taste-skill/` or `.agents/` (all ignored).
+- Do not refetch `repos-data.json` or invent repo descriptions in this pass.
+- Do not add gradients, shadows, borders, monospace, pills, icon cards, numbering, or a sixth
+  colour. The linter will catch most of it.
+- Do not add `data-reveal` to elements that mount after `useReveal` has run; the filter rows inherit
+  `is-in` from their parent list. If new dynamic blocks appear, re-observe them.
+- Do not claim the final report is done without opening every screenshot from the last run.
+
+---
 
 ## 1. Goal
 
