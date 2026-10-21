@@ -35,4 +35,6 @@ For a full list go to my github io website.
 
 ## Site
 
-The active site is a React/Vite app served via GitHub Pages. The visual theme is defined in `src/index.css`. The root static files (`index-static.html`, `styles.css`, `script.js`) are legacy and will be removed in a separate cleanup.
+The active site is a React/Vite app served via GitHub Pages. Styles live in `src/index.css`.
+
+Design tooling is installed locally under `.agents/skills/` and is gitignored, so a fresh clone will not have it. Restore it from `Leonxlnx/taste-skill` into `.agents/skills/` (see `skills-lock.json`). The redesign plan is in `SPEC.md`.
