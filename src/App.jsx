@@ -1,5 +1,6 @@
 import Nav from "./components/Nav.jsx";
 import Hero from "./components/Hero.jsx";
+import SelectedWork from "./components/SelectedWork.jsx";
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <Nav />
       <main id="main">
         <Hero />
+        <SelectedWork />
       </main>
     </>
   );
