@@ -1,6 +1,6 @@
 # Spec — White Portfolio Redesign
 
-**Status:** implementation and critique round 1 done — final report (C8) remains
+**Status:** done — critique round 1 passed at 7.6, report written, ready for the owner's review
 **Date:** 2026-10-21
 **Scope:** full visual rebuild of the site. Stack, data and links stay.
 
@@ -9,17 +9,18 @@
 # HANDOFF — read this first
 
 **Branch:** `lg/feat/white-portfolio-redesign` (not pushed, no PR)
-**HEAD:** `fix: critique round 1` on top of `6a3eda2`
-**Working tree:** clean (`git status --short` empty)
+**HEAD:** the `docs: sync the redesign handoff` commit (C8); C6 is `7ba8c65 fix: critique round 1`
+**Working tree:** clean (`git status --short` empty; `prev-chat.md` is the owner's export, untracked)
 **Gate:** `lint.mjs` 0 FAIL / 0 WARN; `inspect.mjs` **0 FAIL, 2 WARN** at 1440, 768, 390.
 **Critique:** round 1 scored **7.6**; no second round needed (stop line 7.5).
-**Screenshots to look at:** `.taste-skill/c6c/` (ignored by git). Before shots: `.taste-skill/before/`.
+**Screenshots:** `.taste-skill/final/` (last run, all opened). Round-1 fix state: `.taste-skill/c6c/`.
+Before shots: `.taste-skill/before/`.
 
 ## Where it is
 
-C0–C6 are done and committed. The page is built, responsive, animated and critiqued. What is left
-is the **final report** (C8) and asking the owner about a push. No code work remains. `README.md` is
-the owner's and is **do not touch** — a new session must not rewrite it.
+C0–C8 are done and committed. The page is built, responsive, animated, critiqued and documented. The
+final report is in the owner's session/PR description. `README.md` is the owner's and was **not
+touched** (they wrote it and asked that it be left alone).
 
 | # | Commit | Done |
 | --- | --- | --- |
@@ -29,7 +30,8 @@ the owner's and is **do not touch** — a new session must not rewrite it.
 | C3 | `49b8d0a` | SelectedWork + Project, 5 media images, `marked` removed |
 | C4 | `da3c3aa` | About, RepoIndex (filter), Footer; card components removed |
 | C5 | `264178f` | reveal hook, masked headline, portrait settle, hover states, noscript |
-| C6 | `fix: critique round 1` | tablet hero scale, hero support left-aligned, repo row grid, tablet ledger stack, footer bookend |
+| C6 | `7ba8c65` | tablet hero scale, hero support left-aligned, repo row grid, tablet ledger stack, footer bookend, no-JS tokens |
+| C8 | `docs: sync the redesign handoff` | this handoff, deletion of the unused repo placeholder |
 
 ## Resume in one command block
 
@@ -39,7 +41,7 @@ git checkout lg/feat/white-portfolio-redesign
 (nohup npx vite --port 5199 --strictPort >/tmp/lg-vite.log 2>&1 &)
 # page: http://localhost:5199/LaishGlenberg/  (base path matters)
 node .agents/skills/design-taste-frontend/scripts/inspect.mjs \
-  http://localhost:5199/LaishGlenberg/ --out .taste-skill/round1
+  http://localhost:5199/LaishGlenberg/ --out .taste-skill/final
 ```
 
 The skill lives in `.agents/skills/design-taste-frontend/` on this machine. It is gitignored; a
@@ -47,10 +49,9 @@ fresh clone must reinstall it from `Leonxlnx/taste-skill` (see the README note).
 
 ## Next steps, in order
 
-1. **C8 — report.** Final report into the chat/PR description: direction and seed, redraws and why,
-   the idea sentence, the live thing, final scores, placeholder inventory, and the two defended
-   WARNs. Do not edit `README.md`.
-2. Ask the owner before any push or PR. The branch has never been pushed.
+1. Owner review. The report in the session/PR description carries the direction, scores,
+   placeholder inventory and the two defended WARNs.
+2. Ask before any push or PR. The branch has never been pushed.
 
 ## Current gate output (do not regress)
 
@@ -147,7 +148,7 @@ owners' placeholder/media call, not layout faults.
 - Copy: selected-work one-liners and the About text are extrapolated from `README.md`; the owner
   will rewrite it. The repo index uses `src/repos-data.json`, which is stale (missing exa-cli,
   pi-command-cli and others) — that is a later content task, not this pass.
-- `public/assets/images/repos/repo-placeholder.JPG` is now unused; delete it in C8 if desired.
+- `public/assets/images/repos/repo-placeholder.JPG` was unused and has been deleted (C8).
 - No `assets.mjs` search, no `credits.json`, no video. Do not add stock imagery.
 
 ## Known soft spots (recorded, not fixed)
@@ -416,7 +417,7 @@ inspector opened and looked at.
 | C5 | `feat: add reveal and motion layer` | reveal hook, `motion.css`, hero sequence, signature masked headline, hover/focus states, noscript fallback | inspector motion count 53 (>= 16); reduced-motion pass with no `reduced-hidden`; 4× CPU check: CLS 0.0002, all 24 reveals fire after scrolling to the bottom; no-JS noscript fallback; 0 FAIL |
 | C6 | `fix: critique round 1` | top three findings from the screenshots | **done** — 0 FAIL, 2 WARN, 7.6 |
 | C7 | `fix: critique round 2` (only if needed) | next three findings | not run: round 1 reached 7.5 |
-| C8 | `docs: sync the spec handoff` (the report lives in the chat/PR) | final report, handoff. **Do not edit `README.md`** | build passes; placeholder list and sources current |
+| C8 | `docs: sync the redesign handoff` (the report lives in the chat/PR) | handoff, remove the unused repo placeholder. **Do not edit `README.md`** | **done** — build passes; placeholder list current |
 
 **Validation notes**
 
