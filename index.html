@@ -3,20 +3,75 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Laish Glenberg | GitHub Repositories</title>
+    <title>Laish Glenberg — Software Engineer</title>
     <meta
       name="description"
-      content="Personal GitHub Pages site for Laish Glenberg"
+      content="Laish Glenberg builds developer tools, MCP servers and web experiments."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,800&display=swap"
       rel="stylesheet"
     />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <noscript>
+      <style>
+        /* Without JS the app never mounts and none of the page CSS loads, so the
+           fallback carries its own tokens. Same type, inks and margins as the poster. */
+        body {
+          margin: 0;
+          background: #ffffff;
+          color: #0b0b0c;
+          font-family: "Cabinet Grotesk", "Helvetica Neue", Arial, sans-serif;
+        }
+        .fallback {
+          max-width: 1280px;
+          margin: 0 auto;
+          padding: 12vh clamp(20px, 4vw, 56px) 56px;
+        }
+        .fallback__name {
+          margin: 0 0 clamp(40px, 8vh, 72px);
+          font-size: clamp(4.5rem, 19vw, 14.4rem);
+          font-weight: 800;
+          line-height: 0.82;
+          letter-spacing: -0.04em;
+        }
+        .fallback__name span {
+          display: block;
+        }
+        .fallback__name span:first-child {
+          color: #707070;
+        }
+        .fallback p {
+          max-width: 28ch;
+          margin: 0 0 16px;
+          font-size: 1.125rem;
+          line-height: 1.6;
+        }
+        .fallback a {
+          color: inherit;
+          text-decoration: underline;
+          text-underline-offset: 4px;
+        }
+      </style>
+    </noscript>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div class="fallback">
+        <h1 class="fallback__name"><span>Laish</span> <span>Glenberg</span></h1>
+        <p>Developer tools, MCP servers and web experiments.</p>
+        <p>
+          <a href="https://github.com/LaishGlenberg">GitHub</a> ·
+          <a href="https://www.linkedin.com/in/laish-glenberg/">LinkedIn</a>
+        </p>
+      </div>
+    </noscript>
     <script type="module" src="./src/main.jsx"></script>
   </body>
 </html>

@@ -1,0 +1,738 @@
+/* Nav ------------------------------------------------------------------ */
+
+.nav {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 20;
+  padding-block: var(--space-5);
+}
+
+.nav__frame {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.nav__mark {
+  font-size: var(--step-small);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.nav__links {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(16px, 2vw, 32px);
+}
+
+.nav__links a {
+  font-size: var(--step-small);
+  font-weight: 400;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.nav__links a:hover {
+  color: var(--muted);
+}
+
+.nav__mark:focus-visible,
+.nav__links a:focus-visible {
+  outline-offset: 6px;
+}
+
+/* Sections -------------------------------------------------------------- */
+
+.section-title {
+  font-size: var(--step-h2);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+/* Work ------------------------------------------------------------------ */
+
+.work {
+  padding-block: var(--section-gap);
+  scroll-margin-top: 32px;
+}
+
+.work__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--work-gap);
+  margin-top: var(--title-gap);
+}
+
+/* Selected work: each project is a plate with its copy set beside it, the
+   sides alternating. Both plates are seven columns; the copy column is five. */
+
+.project {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto 1fr;
+  column-gap: var(--col-gap);
+}
+
+.project__media {
+  grid-row: 1 / 3;
+  align-self: start;
+  min-width: 0;
+  display: block;
+  overflow: hidden;
+  padding: clamp(16px, 2.2vw, 32px);
+  background: var(--wash);
+}
+
+.project--left .project__media {
+  grid-column: 1 / 8;
+}
+
+.project--left .project__head,
+.project--left .project__copy {
+  grid-column: 8 / 13;
+}
+
+.project--right .project__media {
+  grid-column: 6 / 13;
+}
+
+.project--right .project__head,
+.project--right .project__copy {
+  grid-column: 1 / 6;
+}
+
+.project__head {
+  grid-row: 1;
+  margin-bottom: var(--space-5);
+}
+
+.project__name {
+  font-size: var(--step-h3);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  overflow-wrap: break-word;
+}
+
+.project__name a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.project__kind {
+  display: block;
+  margin-top: var(--space-3);
+  font-size: var(--step-small);
+  color: var(--muted);
+}
+
+.project__media img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .project__media:hover img {
+    transform: scale(1.02);
+  }
+
+  .js .project__media:not(.is-in) img {
+    transform: scale(1.04);
+  }
+}
+
+.project__copy {
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  min-width: 0;
+}
+
+.project__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.project__description {
+  font-weight: 500;
+}
+
+.project__foot {
+  margin-top: auto;
+}
+
+.project__stack {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: var(--space-4);
+  font-size: var(--step-small);
+  color: var(--muted);
+}
+
+.project__stack li + li::before {
+  content: "·";
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+/* About ----------------------------------------------------------------- */
+
+.about {
+  /* Half a section gap above, a full one below: the boundary between two
+     sections is share-of-the-gap + full gap, matching the hero-to-work gap. */
+  padding-block: calc(var(--section-gap) / 2) var(--section-gap);
+  scroll-margin-top: 32px;
+}
+
+.about__body {
+  margin-top: var(--title-gap);
+  columns: 2;
+  column-gap: clamp(24px, 4vw, 64px);
+  font-size: clamp(1.375rem, 2.1vw, 2rem);
+  line-height: 1.18;
+  letter-spacing: -0.012em;
+}
+
+.about__body mark {
+  background: var(--wash);
+  color: inherit;
+  padding: 0 0.08em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.about__more {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.06em 0.2em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.about__more:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Repositories ---------------------------------------------------------- */
+
+.repos {
+  padding-block: calc(var(--section-gap) / 2) var(--section-gap);
+  scroll-margin-top: 32px;
+}
+
+.repos__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4) var(--space-5);
+  margin-bottom: var(--title-gap);
+}
+
+.repos__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(14px, 2vw, 28px);
+}
+
+.filter {
+  padding: var(--space-2) 0;
+  font-size: var(--step-small);
+  color: var(--muted);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.filter:hover {
+  color: var(--ink);
+}
+
+.filter[aria-pressed="true"] {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.repo-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.repo-row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--col-gap);
+  align-items: baseline;
+  padding: var(--space-4) var(--space-3);
+  margin-inline: calc(-1 * var(--space-3));
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+
+.repo-row:hover {
+  background: var(--wash);
+}
+
+.repo-row__name {
+  grid-column: 1 / 5;
+  font-size: var(--step-body);
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.repo-row__desc {
+  grid-column: 5 / 10;
+  color: var(--ink);
+}
+
+.repo-row__meta {
+  display: contents;
+}
+
+.repo-row__lang {
+  grid-column: 10 / 11;
+  font-size: var(--step-small);
+  color: var(--muted);
+}
+
+.repo-row__stars {
+  grid-column: 11 / 12;
+  font-size: var(--step-small);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.repo-row__arrow {
+  grid-column: 12 / 13;
+  justify-self: end;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.repo-row__lang:empty,
+.repo-row__stars:empty {
+  display: none;
+}
+
+.repo-row:hover .repo-row__arrow {
+  transform: translate(3px, -3px);
+}
+
+/* Footer ---------------------------------------------------------------- */
+
+.footer {
+  background: var(--ink);
+  color: var(--paper);
+  padding-block: clamp(64px, 10vh, 120px) clamp(32px, 5vh, 56px);
+}
+
+.footer ::selection {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.footer :focus-visible {
+  outline-color: var(--paper);
+}
+
+.footer__frame {
+  min-height: 62svh;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.footer__note {
+  max-width: 26ch;
+  font-size: var(--step-body);
+}
+
+.footer__bottom {
+  margin-top: auto;
+}
+
+.footer__name {
+  font-size: var(--step-display);
+  font-weight: 800;
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+}
+
+.footer__name span {
+  display: block;
+}
+
+.footer__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-5);
+  margin-top: var(--space-7);
+  font-size: var(--step-small);
+}
+
+.footer__place {
+  color: var(--ink-muted);
+}
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(16px, 2vw, 28px);
+}
+
+.footer__links a {
+  color: var(--paper);
+}
+
+.footer__links a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Hero ----------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  padding-block: clamp(96px, 14vh, 160px) clamp(40px, 7vh, 72px);
+}
+
+.hero__frame {
+  min-height: calc(100svh - clamp(136px, 21vh, 232px));
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto 1fr;
+  column-gap: var(--col-gap);
+  align-items: end;
+}
+
+.hero__title {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  align-self: start;
+  margin-top: clamp(24px, 6vh, 72px);
+  font-size: var(--step-display);
+  font-weight: 800;
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+}
+
+.hero__line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.hero__line:first-child {
+  color: var(--muted);
+}
+
+.hero__line:last-child {
+  color: var(--ink);
+}
+
+.hero__line > span {
+  display: block;
+}
+
+/* Portrait plate with its caption: the image sits above the sentence, in the
+   column to the right of the name. The name ends at column 8, so the column
+   starts at 10 to keep the plate clear of "Glenberg". */
+.hero__aside {
+  grid-column: 10 / 13;
+  grid-row: 1 / 3;
+  align-self: end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-6);
+}
+
+.hero__portrait {
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero__portrait img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  background: var(--wash);
+}
+
+.hero__support p {
+  max-width: 28ch;
+}
+
+.hero__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-5);
+  margin-top: var(--space-5);
+}
+
+/* Desktop: the name and the actions share a bottom edge. The hero is only as
+   tall as its content, so the empty full-height band above Selected work is
+   gone and the name sits on the button's level instead of floating above it. */
+
+@media (min-width: 901px) {
+  .nav__frame {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--col-gap);
+  }
+
+  .nav__frame > nav {
+    grid-column: 10 / 13;
+    justify-self: start;
+  }
+
+  .hero {
+    min-height: 0;
+  }
+
+  .hero__frame {
+    min-height: 0;
+  }
+
+  .hero__title {
+    grid-row: 1 / 3;
+    align-self: end;
+    margin-top: 0;
+  }
+
+  .hero__aside {
+    grid-row: 1 / 3;
+  }
+}
+
+/* Short desktop screens: keep the first screen to one viewport. */
+
+@media (max-height: 850px) and (min-width: 681px) {
+  .hero__title {
+    font-size: clamp(5rem, 12vw, 11rem);
+  }
+
+  .hero__aside {
+    gap: var(--space-4);
+  }
+
+  .hero__portrait {
+    width: min(100%, 180px);
+  }
+}
+
+/* Tablet --------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  /* The two-line name is sized to its longest line, not to the viewport: at
+     15vw it only filled 62% of the sheet and left a hole above the portrait. */
+  .hero__title {
+    font-size: 22vw;
+  }
+
+  /* No column is left beside the name, so the plate and its caption share the
+     bottom row: image on the left, sentence and actions on the right. */
+  .hero__aside {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-6);
+  }
+
+  .hero__portrait {
+    flex: none;
+    width: min(42%, 200px);
+  }
+
+  .hero__support {
+    max-width: 46%;
+  }
+
+  .footer__name {
+    font-size: 22vw;
+  }
+
+  .about__body {
+    columns: 1;
+    font-size: clamp(1.375rem, 3vw, 1.75rem);
+  }
+
+  /* Projects stack: name, plate, then the copy under it. */
+  .project {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project--right {
+    margin-top: 0;
+  }
+
+  .project--right .project__media {
+    width: 82%;
+    margin-left: auto;
+  }
+
+  .project__head {
+    order: 1;
+    margin-bottom: var(--space-4);
+  }
+
+  .project__media {
+    order: 2;
+    grid-row: auto;
+    width: 100%;
+  }
+
+  .project__copy {
+    order: 3;
+    margin-top: var(--space-5);
+  }
+
+  /* Name + meta share line one; the description takes line two. At 768px the
+     twelve-column ledger squeezes descriptions into four-line columns, so the
+     row stacks before the phone breakpoint. A wrapped name must never push the
+     language, stars or arrow onto a line of their own. */
+  .repo-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-1) var(--space-3);
+    padding: var(--space-4) 0;
+    margin-inline: 0;
+  }
+
+  .repo-row__name {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .repo-row__meta {
+    display: flex;
+    grid-column: 2;
+    grid-row: 1;
+    align-items: baseline;
+    justify-self: end;
+    gap: var(--space-3);
+  }
+
+  .repo-row__desc {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    max-width: 62ch;
+  }
+}
+
+/* Phone ---------------------------------------------------------------- */
+
+@media (max-width: 680px) {
+  .nav__links {
+    gap: 18px;
+  }
+
+  .nav__links a,
+  .nav__mark {
+    font-size: 0.875rem;
+  }
+
+  .hero {
+    padding-block: var(--space-9) var(--space-7);
+  }
+
+  .hero__frame {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero__title {
+    margin-top: 6vh;
+    font-size: 19vw;
+  }
+
+  .hero__portrait {
+    width: 52vw;
+    margin-top: 0;
+  }
+
+  .hero__aside {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--space-6);
+    margin-top: var(--space-7);
+  }
+
+  .hero__support {
+    max-width: none;
+    margin-top: 0;
+  }
+
+  .hero__support p {
+    max-width: 32ch;
+  }
+
+  .hero__actions {
+    justify-content: flex-start;
+    gap: var(--space-5);
+    margin-top: var(--space-5);
+  }
+
+  .work {
+    padding-block: var(--space-9);
+  }
+
+  .work__list {
+    gap: 72px;
+  }
+
+  .project__media {
+    padding: var(--space-3);
+  }
+
+  .about,
+  .repos {
+    padding-block: var(--space-9);
+  }
+
+  .about__body {
+    font-size: 1.375rem;
+  }
+
+  .repos__head {
+    gap: var(--space-4);
+  }
+
+  .repo-row__name {
+    font-size: 1rem;
+  }
+
+  .footer {
+    padding-block: var(--space-8) var(--space-6);
+  }
+
+  .footer__frame {
+    min-height: 0;
+    gap: var(--space-7);
+  }
+
+  .footer__name {
+    font-size: 19vw;
+  }
+
+  .footer__row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+}

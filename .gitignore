@@ -140,3 +140,13 @@ out
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Local agent skills (design-taste-frontend). Not committed; reinstall from
+# Leonxlnx/taste-skill into .agents/skills/ — skills-lock.json records the version.
+.agents/
+
+# Build output; the Pages workflow rebuilds it.
+/dist/
+
+# Local design-gate artifacts (screenshots, reports)
+.taste-skill/
