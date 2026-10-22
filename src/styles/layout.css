@@ -263,6 +263,10 @@
   color: var(--ink);
 }
 
+.repo-row__meta {
+  display: contents;
+}
+
 .repo-row__lang {
   grid-column: 10 / 11;
   font-size: var(--step-small);
@@ -281,6 +285,11 @@
   grid-column: 12 / 13;
   justify-self: end;
   transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.repo-row__lang:empty,
+.repo-row__stars:empty {
+  display: none;
 }
 
 .repo-row:hover .repo-row__arrow {
@@ -422,18 +431,16 @@
 .hero__support {
   grid-column: 9 / 13;
   align-self: end;
-  text-align: right;
 }
 
 .hero__support p {
-  max-width: 30ch;
-  margin-left: auto;
+  max-width: 28ch;
 }
 
 .hero__actions {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 24px;
   margin-top: 28px;
 }
@@ -453,9 +460,55 @@
 /* Tablet --------------------------------------------------------------- */
 
 @media (max-width: 900px) {
+  /* The two-line name is sized to its longest line, not to the viewport: at
+     15vw it only filled 62% of the sheet and left a hole above the portrait. */
+  .hero__title {
+    font-size: 22vw;
+  }
+
+  .hero__portrait {
+    width: min(100%, 200px);
+  }
+
+  .footer__name {
+    font-size: 22vw;
+  }
+
   .about__body {
     columns: 1;
     font-size: clamp(1.375rem, 3vw, 1.75rem);
+  }
+
+  /* Name + meta share line one; the description takes line two. At 768px the
+     twelve-column ledger squeezes descriptions into four-line columns, so the
+     row stacks before the phone breakpoint. A wrapped name must never push the
+     language, stars or arrow onto a line of their own. */
+  .repo-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 4px 12px;
+    padding: 14px 0;
+    margin-inline: 0;
+  }
+
+  .repo-row__name {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .repo-row__meta {
+    display: flex;
+    grid-column: 2;
+    grid-row: 1;
+    align-items: baseline;
+    justify-self: end;
+    gap: 12px;
+  }
+
+  .repo-row__desc {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    max-width: 62ch;
   }
 }
 
@@ -494,12 +547,10 @@
 
   .hero__support {
     margin-top: clamp(32px, 5vh, 48px);
-    text-align: left;
   }
 
   .hero__support p {
     max-width: 32ch;
-    margin-left: 0;
   }
 
   .hero__actions {
@@ -571,36 +622,8 @@
     margin-bottom: 32px;
   }
 
-  .repo-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 12px;
-    padding: 14px 0;
-    margin-inline: 0;
-  }
-
   .repo-row__name {
-    flex: 1 1 auto;
-    order: 1;
     font-size: 1rem;
-  }
-
-  .repo-row__lang {
-    order: 2;
-    margin-left: auto;
-  }
-
-  .repo-row__stars {
-    order: 2;
-  }
-
-  .repo-row__arrow {
-    order: 2;
-  }
-
-  .repo-row__desc {
-    flex: 1 0 100%;
-    order: 3;
   }
 
   .footer {

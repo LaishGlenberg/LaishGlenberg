@@ -61,14 +61,16 @@ export default function RepoIndex() {
                 {repo.description && (
                   <span className="repo-row__desc">{repo.description}</span>
                 )}
-                <span className="repo-row__lang">{repo.language || ""}</span>
-                <span className="repo-row__stars">
-                  {repo.stargazers_count
-                    ? `${repo.stargazers_count} star${repo.stargazers_count === 1 ? "" : "s"}`
-                    : ""}
-                </span>
-                <span className="repo-row__arrow" aria-hidden="true">
-                  ↗
+                <span className="repo-row__meta">
+                  <span className="repo-row__lang">{repo.language || ""}</span>
+                  <span className="repo-row__stars">
+                    {repo.stargazers_count
+                      ? `${repo.stargazers_count} star${repo.stargazers_count === 1 ? "" : "s"}`
+                      : ""}
+                  </span>
+                  <span className="repo-row__arrow" aria-hidden="true">
+                    ↗
+                  </span>
                 </span>
               </a>
             </li>

@@ -1,6 +1,6 @@
 # Spec — White Portfolio Redesign
 
-**Status:** implementation in progress — handoff at C5, clean tree
+**Status:** implementation and critique round 1 done — final report (C8) remains
 **Date:** 2026-10-21
 **Scope:** full visual rebuild of the site. Stack, data and links stay.
 
@@ -9,16 +9,17 @@
 # HANDOFF — read this first
 
 **Branch:** `lg/feat/white-portfolio-redesign` (not pushed, no PR)
-**HEAD:** `264178f feat: add reveal and motion layer`
+**HEAD:** `fix: critique round 1` on top of `6a3eda2`
 **Working tree:** clean (`git status --short` empty)
 **Gate:** `lint.mjs` 0 FAIL / 0 WARN; `inspect.mjs` **0 FAIL, 2 WARN** at 1440, 768, 390.
-**Screenshots to look at:** `.taste-skill/c5b/` (ignored by git). Before shots: `.taste-skill/before/`.
+**Critique:** round 1 scored **7.6**; no second round needed (stop line 7.5).
+**Screenshots to look at:** `.taste-skill/c6c/` (ignored by git). Before shots: `.taste-skill/before/`.
 
 ## Where it is
 
-C0–C5 are done and committed. The page is fully built, responsive, and animated. What is left is
-the **look-and-fix critique** (C6), an optional second round (C7), and the **README + final report**
-(C8). No functional work remains.
+C0–C6 are done and committed. The page is built, responsive, animated and critiqued. What is left
+is the **final report** (C8) and asking the owner about a push. No code work remains. `README.md` is
+the owner's and is **do not touch** — a new session must not rewrite it.
 
 | # | Commit | Done |
 | --- | --- | --- |
@@ -28,6 +29,7 @@ the **look-and-fix critique** (C6), an optional second round (C7), and the **REA
 | C3 | `49b8d0a` | SelectedWork + Project, 5 media images, `marked` removed |
 | C4 | `da3c3aa` | About, RepoIndex (filter), Footer; card components removed |
 | C5 | `264178f` | reveal hook, masked headline, portrait settle, hover states, noscript |
+| C6 | `fix: critique round 1` | tablet hero scale, hero support left-aligned, repo row grid, tablet ledger stack, footer bookend |
 
 ## Resume in one command block
 
@@ -45,18 +47,10 @@ fresh clone must reinstall it from `Leonxlnx/taste-skill` (see the README note).
 
 ## Next steps, in order
 
-1. **C6 — critique.** Open every screenshot in `.taste-skill/c5b/` (desktop, tablet, mobile, all
-   pages; the `page-NN.jpg` files are contact sheets, not broken layouts). Use
-   `references/critique.md` and write the round in its §4 shape. Score design / usability /
-   creativity / content with its weights and caps. Fix the top three real problems, then re-run
-   lint + inspect and look again. Max three rounds.
-2. **C7 — only if round 1 leaves real problems.** Commit each round separately
-   (`fix: critique round 1`, etc.).
-3. **C8 — docs/report.** Update `README.md`'s Site section (stack, commands, the `.agents/` note).
-   Write the final report into the chat/PR description with: direction and seed, redraws and why,
+1. **C8 — report.** Final report into the chat/PR description: direction and seed, redraws and why,
    the idea sentence, the live thing, final scores, placeholder inventory, and the two defended
-   WARNs.
-4. Ask the user before any push or PR. The branch has never been pushed.
+   WARNs. Do not edit `README.md`.
+2. Ask the owner before any push or PR. The branch has never been pushed.
 
 ## Current gate output (do not regress)
 
@@ -67,10 +61,43 @@ fresh clone must reinstall it from `Leonxlnx/taste-skill` (see the README note).
     zero WARNs, split it into three shorter paragraphs (do not shrink the composition).
   - `no-footage` — no video. **Defence:** all media is placeholder stills and the owner said media
     comes later. Do not add stock footage.
-- Motion: 53 elements moved, 0 `still-page`.
-- Reduced motion: inspector passes (no `reduced-hidden`).
-- 4× CPU check (manual, done): CLS `0.0002`, all 24 `[data-reveal]` elements fired after scrolling
-   to the bottom, no horizontal overflow. A temporary script was used; it is not in the repo.
+- Motion: 54 desktop / 55 tablet / 56 mobile elements moved, 0 `still-page`.
+- Reduced motion re-checked after C6 (manual): 0 hidden reveals, no clip/opacity traps at 1440.
+- 4× CPU check (manual, done at C5): CLS `0.0002`; all 24 `[data-reveal]` elements fired after
+  scrolling to the bottom at 390 after C6. A temporary script was used; it is not in the repo.
+
+## Critique round 1 (C6)
+
+```
+ROUND 1
+Seen in one second: the name, set enormous, in two greys.
+Idea (one sentence): a developer's work shown as a type poster — no interface, the page is the
+  frame and the projects hang in it.
+Live thing: the language filter on the repository index.
+Layout words by section: hero=poster / work=scatter / about=split / repos=ledger / footer=field.
+Scores: design 8 · usability 8 · creativity 7 · content 6 → overall 7.6.
+Caps applied: none. Six real pictures, one moving layer, a real hero button, no FAIL. Content is 6
+  rather than 5 because the media are real repo previews and the copy is real repo copy, not lorem
+  or grey boxes; the placeholder trade-off is recorded, not argued away.
+Top three problems (fixed in `fix: critique round 1`):
+1. Tablet hero (tablet-fold.jpg) left a ~350px hole between the name and the portrait row. The
+   15vw display only filled 62% of the sheet. The two-line name is now sized to its longest line
+   (22vw, 92% of the frame at 768) so the hero reads as one poster.
+2. Hero support (desktop-fold.jpg, tablet-fold.jpg) was right-aligned, against the page's
+   left-aligned system, and broke into ragged one-word lines. It is now left-aligned on the
+   columns 9–12 edge (shared with the raised work column), actions with it.
+3. Repo rows (mobile-page-01.jpg, tablet-page-01.jpg) let long names push language, stars and the
+   arrow onto stray lines, and at 768 the 12-col ledger squeezed descriptions into four-line
+   columns. Below 900px the row is now a fixed grid: name + meta on line one, description below at
+   max 62ch. The footer bookend was resized to match the new tablet hero.
+
+Also fixed in the same commit: the JS-disabled pass rendered as Times on an 8px margin, because
+ every stylesheet is imported through JS. The `<noscript>` block now carries its own tokens.
+```
+
+Not fixed, by decision: the GitHub preview cards duplicate the h3 and read as embeds; the portrait
+is a selfie; the About paragraph triggers `statement-length`; there is no footage. All four are the
+owners' placeholder/media call, not layout faults.
 
 ## Design decisions (do not re-litigate without asking)
 
@@ -78,11 +105,14 @@ fresh clone must reinstall it from `Leonxlnx/taste-skill` (see the README note).
   "Masked headline". The sheet is `.taste-skill/direction.json`; reprint with
   `node .agents/skills/design-taste-frontend/scripts/draw.mjs --show`.
 - **Type:** Cabinet Grotesk (Fontshare), 800/500/400. Five visible steps: 216 / 58 / 43 / 18 / 14px
-  at 1440 (plus the 30px About lead). Do not add faces or sizes casually.
+  at 1440 (plus the 30px About lead). The display step is 22vw between 681–900px because at that
+  width 15vw only filled 62% of the sheet; below 680px it is 19vw. Do not add faces or sizes
+  casually.
 - **Colour:** `--paper #ffffff`, `--ink #0b0b0c`, `--muted #707070` (meta only), `--ink-muted` on
   black, `--wash #efefed`. No accent, no gradients, no borders, no shadows, square corners.
-- **Hero:** two authored lines, line 1 muted, line 2 ink; portrait bottom-left; sentence + button
-  bottom-right. The hero is a type poster; the portrait closes the bottom-left void.
+- **Hero:** two authored lines, line 1 muted, line 2 ink; portrait bottom-left; sentence + actions
+  bottom-right, left-aligned on the column-9 edge. The hero is a type poster; the portrait closes
+  the bottom-left void.
 - **Work:** `work-loose-scatter` redraw — five projects at alternating width/side (left 7 cols,
   right 5 cols raised with a negative margin, inset 9 cols), 16:9 media on a wash mat, h3 above,
   one-line description below, link in the head. This replaced the dealt 560px ledger, which could
@@ -90,15 +120,20 @@ fresh clone must reinstall it from `Leonxlnx/taste-skill` (see the README note).
 - **About:** two columns, 30px lead, wash `mark` highlights, final sentence is a black-highlighted
   GitHub link.
 - **Repos:** full-width 12-col ledger, all 23 repos, filter `All / TypeScript / JavaScript / Python /
-  Other`, name 18/500, description 18 ink, language + stars 14 muted, arrow on the right. The filter
-  is the page's live thing.
+  Other`, name 18/500, description 18 ink, language + stars 14 muted, arrow on the right. Below
+  900px the row stacks: name + meta on line one, description full width below. The filter is the
+  page's live thing.
 - **Footer:** black field, name repeated at `--step-display` on two lines (bookend), note top-left,
-  location + GitHub / LinkedIn / Back to top bottom. No email — the owner has no public one.
+  location + GitHub / LinkedIn / Back to top bottom. No email — the owner has no public one. On
+  tablet the name uses the same 22vw as the hero.
 - **Motion:** masked headline is the signature; portrait scale 1.06→1 over 2.4s; support/actions
   fade at 450ms; sections reveal once via IntersectionObserver (`rootMargin: -5%`, threshold 0.1);
   project head/media/desc at 0/80/140ms; repo rows stagger 20ms capped at index 12. The `-5%`
   rootMargin replaced `-12%` because the footer row never fired at max scroll on a phone.
-- **No-JS:** `<noscript>` fallback in `index.html` with the name, sentence, GitHub and LinkedIn.
+- **No-JS:** `<noscript>` fallback in `index.html` with the name, sentence, GitHub and LinkedIn,
+  carrying its own inline type/colour tokens. The page CSS is imported by JS, so none of it loads
+  without JS; before C6 the fallback rendered as Times on an 8px margin. Verified at 1440 and 390
+  (no overflow).
 
 ## Placeholders (must be swapped before launch)
 
@@ -115,15 +150,15 @@ fresh clone must reinstall it from `Leonxlnx/taste-skill` (see the README note).
 - `public/assets/images/repos/repo-placeholder.JPG` is now unused; delete it in C8 if desired.
 - No `assets.mjs` search, no `credits.json`, no video. Do not add stock imagery.
 
-## Likely critique findings (my own read, not yet scored)
+## Known soft spots (recorded, not fixed)
 
 - The GitHub cards duplicate the visible title/description and read like embeds rather than work.
-  This is the placeholder trade-off; note it, do not redesign around it.
-- The portrait is an informal selfie against a formal type system. Placeholder; note it.
-- Tablet (768×1024) leaves a large gap between the name and the bottom row. Check `tablet-fold.jpg`.
-- The About block is long at 30px; the inspector warns. Either defend or split.
-- The repo ledger is 23 rows and makes the page ~8.3 screens; verify it does not feel like a dump.
-- Hero support text is right-aligned (dealt blueprint). It is deliberate; judge from the screenshot.
+  This is the placeholder trade-off; do not redesign around it.
+- The portrait is an informal selfie against a formal type system. Placeholder.
+- The About block is long at 30px; the inspector warns. Defended as a biography in two columns.
+- The repo ledger is 23 rows and makes the page ~8.3 screens; judged as dense but not a dump.
+- At 768 the hero keeps ~250px of white between the name and the bottom row; after the scale fix it
+  reads as the poster's rest rather than a hole.
 
 ## Idea sentence (draft for the report)
 
@@ -206,7 +241,7 @@ Fallback stack: `"Helvetica Neue", Arial, sans-serif`. Loaded from Fontshare wit
 
 | Role | Size | Leading | Tracking |
 | --- | --- | --- | --- |
-| Display (h1) | `clamp(6.5rem, 15vw, 14.4rem)`; 21vw under 680px | 0.82 | -0.04em |
+| Display (h1) | `clamp(6.5rem, 15vw, 14.4rem)`; 22vw at 681–900px; 19vw under 680px | 0.82 | -0.04em |
 | Section title (h2) | `clamp(2.5rem, 4vw, 3.75rem)` | 0.95 | -0.03em |
 | Project title (h3) | `clamp(1.75rem, 3vw, 2.75rem)` | 1.0 | -0.02em |
 | Body | 18px | 1.6 | 0 |
@@ -243,7 +278,8 @@ steps, never lines or shadows. Corners are square.
 3. **Hero** — min-height `100svh`, no image above the fold:
    - `h1` on two authored lines, `Laish` / `Glenberg`, at display size, line one in `--muted`, line
      two in full ink, flush left on the margin and starting 14% down.
-   - Supporting sentence, 17px, max 30ch, bottom-right on columns 9–12: what he does, plainly.
+   - Supporting sentence, 18px, max 28ch, bottom-right on columns 9–12, left-aligned on that
+     column's edge: what he does, plainly.
    - `See the work` (solid ink button, square, 44px+) under the sentence; `GitHub` as a text link.
    - Portrait, 3:4, small (about 20% width), bottom-left in the corner the blueprint leaves empty.
 4. **Selected work** — heading, then five `<article>` blocks from `work-loose-scatter`: each image
@@ -255,7 +291,8 @@ steps, never lines or shadows. Corners are square.
    highlights on place, discipline and tools; final sentence highlighted and linked to GitHub.
 6. **All repositories** — heading, plain-text language filter row, then a full-width ledger for all
    23 repos: name at columns 1–4, description 5–9, language at 10, stars at 11–12, fixed starts and
-   no drawn lines. Hover paints the row `--wash`. Mobile stacks name over meta and description.
+   no drawn lines. Hover paints the row `--wash`. Below 900px the row stacks name + meta on line one
+   and the description below.
    The filter is the page's one live thing: real data, keyboard accessible, works without motion.
 7. **Footer** — black field, a short closing sentence top-left, the name repeated at display size,
    `Tempe, Arizona` bottom-left, `GitHub / LinkedIn / Back to top` bottom-right. No email.
@@ -377,9 +414,9 @@ inspector opened and looked at.
 | C3 | `feat: add selected work spreads` | `SelectedWork.jsx`, `Project.jsx`, `config.js`, 5 media images; delete `FeaturedRepos.jsx`, drop `marked` | lint 0 FAIL; 5 images load, none broken; placements at different widths/sides; links correct; mobile stacking; `rg marked src package.json` empty. Inspect: no FAIL other than documented `no-footage` WARN |
 | C4 | `feat: add about, repository index and footer` | `About.jsx`, `RepoIndex.jsx`, `Footer.jsx`; delete `RepoGrid.jsx`, `RepoCard.jsx` | all 23 repos render; filter works with keyboard and without motion; missing descriptions omitted; one `h1`; every section titled; full-page screenshots at 3 widths; 0 FAIL except `still-page` (C5) |
 | C5 | `feat: add reveal and motion layer` | reveal hook, `motion.css`, hero sequence, signature masked headline, hover/focus states, noscript fallback | inspector motion count 53 (>= 16); reduced-motion pass with no `reduced-hidden`; 4× CPU check: CLS 0.0002, all 24 reveals fire after scrolling to the bottom; no-JS noscript fallback; 0 FAIL |
-| C6 | `fix: critique round 1` | top three findings from the screenshots | before/after screenshots; report score written down; 0 FAIL |
-| C7 | `fix: critique round 2` (only if needed) | next three findings | same as C6; stop after three rounds |
-| C8 | `docs: document the redesign` | `README.md` site section, final report | build passes; documented commands actually run; placeholder list and sources current |
+| C6 | `fix: critique round 1` | top three findings from the screenshots | **done** — 0 FAIL, 2 WARN, 7.6 |
+| C7 | `fix: critique round 2` (only if needed) | next three findings | not run: round 1 reached 7.5 |
+| C8 | `docs: sync the spec handoff` (the report lives in the chat/PR) | final report, handoff. **Do not edit `README.md`** | build passes; placeholder list and sources current |
 
 **Validation notes**
 
