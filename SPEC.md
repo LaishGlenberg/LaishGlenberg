@@ -1,7 +1,7 @@
 # Spec — White Portfolio Redesign
 
-**Status:** round 2 committed; round 3 is a spacing pass on the whole page (in progress)
-**Date:** 2026-10-21 (owner review round 2: same day)
+**Status:** round 3 (spacing) committed — owner is taking over for the final polish
+**Date:** 2026-10-21 (owner review rounds 2–3: same day)
 **Scope:** full visual rebuild of the site. Stack, data and links stay.
 
 ---
@@ -28,6 +28,28 @@ The `note` is body ink, not muted: it is reading copy, so the “muted is meta o
 
 **Next (round 3):** the owner reports inconsistent vertical spacing. Audit and normalise the
 section rhythm, the title-to-content gap, the work spread internals and the raised right rows.
+
+---
+
+# ROUND 3 — DONE (spacing pass, committed)
+
+The page used per-section one-off clamps; `fix: normalize the page's vertical rhythm` puts it on one
+scale.
+
+- **Tokens:** `--space-1…9` (4/8/12/16/24/32/48/64/96), plus `--title-gap` (`clamp(48px, 8vh,
+  88px)`) and `--work-gap` (`clamp(72px, 12vh, 144px)`). Every section's title→content gap now uses
+  `--title-gap` (it was 81/81/54 at 1440, 92/92/61 at 768 and 48/76/32 at 390).
+- **Work:** the raised right-hand rows are gone. Project gaps were alternating 108/36; they are now
+  one uniform `--work-gap` (108 at 1440, 123 at 768, 72 at 390). `description` + `note` are grouped
+  at 12px, the stack and link are pinned to the plate's bottom instead of `space-between` scattering
+  them; the tablet/phone copy no longer double-counts the 20px gap and the 12px note margin.
+- **Repo rows, filters and footer** use the scale (16px row padding, 8px filter hit area, 48px
+  footer row offset). No layout, type or colour change.
+
+**Verified:** lint 0 FAIL / 0 WARN; inspect 0 FAIL / 2 WARN at 1440, 768, 390 (the two recorded
+WARNs). DOM measurements confirmed equal title gaps and work gaps at all three widths; desktop and
+phone section captures were opened. Tablet was measured but the final bands were not eyeballed —
+that, plus any further spacing taste, is the owner's manual pass.
 
 **Resume:**
 
@@ -149,13 +171,13 @@ owners' placeholder/media call, not layout faults.
   casually.
 - **Colour:** `--paper #ffffff`, `--ink #0b0b0c`, `--muted #707070` (meta only), `--ink-muted` on
   black, `--wash #efefed`. No accent, no gradients, no borders, no shadows, square corners.
-- **Hero:** two authored lines, line 1 muted, line 2 ink; portrait bottom-left; sentence + actions
-  bottom-right, left-aligned on the column-9 edge. The hero is a type poster; the portrait closes
-  the bottom-left void.
-- **Work:** `work-loose-scatter` redraw — five projects at alternating width/side (left 7 cols,
-  right 5 cols raised with a negative margin, inset 9 cols), 16:9 media on a wash mat, h3 above,
-  one-line description below, link in the head. This replaced the dealt 560px ledger, which could
-  not carry the previews (recorded in §3).
+- **Hero:** two authored lines, line 1 muted, line 2 ink; portrait in the right-hand column beside
+  the name; sentence + actions under it, left-aligned on the same edge. The hero is a type poster.
+- **Work:** `work-loose-scatter` redraw — five projects, plate 7 cols alternating side (left
+  `1/8`, right `6/13`) with a 5-column copy block beside it, 16:9 media on a wash mat, name + kind
+  at the top, description + note under it, stack and repository link bottom-aligned with the plate.
+  Uniform `--work-gap`; no raised rows. This replaced the dealt 560px ledger, which could not carry
+  the previews (recorded in §3).
 - **About:** two columns, 30px lead, wash `mark` highlights, final sentence is a black-highlighted
   GitHub link.
 - **Repos:** full-width 12-col ledger, all 23 repos, filter `All / TypeScript / JavaScript / Python /
@@ -305,7 +327,8 @@ steps, never lines or shadows. Corners are square.
 
 - Max content width 1280px; outer margins `clamp(20px, 4vw, 56px)`, equal on both sides.
 - 12-column concept, 24px gutter, text blocks share three left edges on the whole page.
-- Section gap 160–220px desktop, 72–96px mobile.
+- Section gap `--section-gap` (`clamp(96px, 14vh, 200px)`; 96px on phone). Spacing scale
+  `--space-1…9`; `--title-gap` for every heading→content gap; `--work-gap` between work spreads.
 - Media may bleed to one margin edge, never arbitrarily.
 - Section rhythm: hero (full height) / work (5 spreads) / about / index / footer.
 

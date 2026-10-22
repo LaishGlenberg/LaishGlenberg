@@ -37,8 +37,10 @@ export default function Project({ project, index }) {
         data-reveal
         style={{ "--reveal-delay": 140 }}
       >
-        <p className="project__description">{project.description}</p>
-        <p className="project__note">{project.note}</p>
+        <div className="project__text">
+          <p className="project__description">{project.description}</p>
+          <p className="project__note">{project.note}</p>
+        </div>
         <div className="project__foot">
           <ul className="project__stack">
             {project.stack.map((item) => (

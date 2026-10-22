@@ -19,6 +19,19 @@
   --max: 1280px;
   --col-gap: 24px;
   --section-gap: clamp(96px, 14vh, 200px);
+  --title-gap: clamp(48px, 8vh, 88px);
+  --work-gap: clamp(72px, 12vh, 144px);
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
 
   /* Motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
