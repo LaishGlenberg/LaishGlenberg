@@ -1,18 +1,29 @@
 ## About Me
 
-I'm a software engineer with a B.S. in computer science, currently pursuing a masters degree at Arizona State University. My main focus is web development (fullstack) and AI engineering, although I like to dabble in many different disciplines like creating vs code extensions, mcp servers, npm packages, and a lot more; as you can see from my vast amount of repositories.
+[![npm](https://custom-icon-badges.demolab.com/badge/npm-@lglen-CB3837?logo=npm&logoColor=white)](https://www.npmjs.com/~lglen)
+[![LinkedIn](https://custom-icon-badges.demolab.com/badge/LinkedIn-@laish--glenberg-0A66C2?logo=linkedin-white&logoColor=fff)](https://www.linkedin.com/in/laish-glenberg)
 
-**Personal Github Site:** https://laishglenberg.github.io/LaishGlenberg/
+I'm a software engineer with a B.S. in computer science, currently pursuing a masters degree at Arizona State University. My main focus is web development (fullstack) and AI engineering, although I like to dabble in many different disciplines like creating vs code extensions, mcp servers, npm packages, and a lot more; as you can see from my vast amount of repositories.
 
 ### Notable Projects:
 
-- **genuinely useful**
-  - [exa-cli](https://github.com/LaishGlenberg/exa-cli): exa web search cli for agents (ports exa's web mcp to typescript cli)
-    - **npm**: [@lglen/exa-cli](https://www.npmjs.com/package/@lglen/exa-cli)
-  - [pi-sudo-helper](https://github.com/LaishGlenberg/pi-sudo-helper): pi extension for enabling `sudo` command
+As of right now, **pi-command-cli** and **pi-agent-graph-builder** are my main personal project
+
+- **pi coding agent related**
+  - [pi-agent-graph-builder](https://github.com/LaishGlenberg/pi-agent-graph): a custom python framework that builds and launches pi agents for easy orchestration
   - [pi-command-cli](https://github.com/LaishGlenberg/pi-command-cli): a cli tool for making pi startup command more streamlined + the ability to save command profiles
     - **npm**: [@lglen/pi-command-cli](https://www.npmjs.com/package/@lglen/pi-command-cli)
-  - [awk-changelog-tool](https://github.com/LaishGlenberg/awk-changelog-tool): npx cli tool that generates git changelogs extremely fast with built in gh cli integration for pr descriptions (lowkey broken rn lol)
+  - [pi-to-md-cli](https://github.com/LaishGlenberg/pi-to-md-cli): typescript cli for converting pi sessions to markdown
+    - **npm**: [@lglen/pi-to-md-cli](https://www.npmjs.com/package/@lglen/pi-to-md-cli)
+  - [pi-parse-commands](https://github.com/LaishGlenberg/pi-parse-commands): deconstruct chained bash commands into multi-line entries
+    - **npm**: [@lglen/pi-parse-commands](https://www.npmjs.com/package/@lglen/pi-parse-commands)
+  - [pi-sudo-helper](https://github.com/LaishGlenberg/pi-sudo-helper): pi extension for enabling `sudo` command
+
+   
+- **other useful projects**
+  - [exa-cli](https://github.com/LaishGlenberg/exa-cli): exa web search cli for agents (ports exa's web mcp to typescript cli)
+    - **npm**: [@lglen/exa-cli](https://www.npmjs.com/package/@lglen/exa-cli)
+  - [awk-changelog-tool](https://github.com/LaishGlenberg/awk-changelog-tool): npx cli tool that generates git changelogs extremely fast with built in gh cli integration for pr descriptions
     - **npm**: [@lglen/awk-changelog-tool](https://www.npmjs.com/package/@lglen/awk-changelog-tool)
   - [bing-image-helper](https://github.com/LaishGlenberg/bing-image-helper): node js sdk for interacting with internal bing image api used for agent grounding (not for prod use)
     - **npm**: [@lglen/bing-image-helper](https://www.npmjs.com/package/@lglen/bing-image-helper)
@@ -31,10 +42,4 @@ I'm a software engineer with a B.S. in computer science, currently pursuing a ma
   - [neural-net-builder](https://github.com/LaishGlenberg/neural-net-builder): website for building neural networks and training them interactively
   - [rate-my-professor-vs-experience-python-ML](https://github.com/LaishGlenberg/rate-my-professor-vs-experience-python-ML): stub linking to my 3 ipynb notebooks detailing lengthy ML report comparing teaching experience to rate my professor score
 
-For a full list go to my github io website.
-
-## Site
-
-The active site is a React/Vite app served via GitHub Pages. Styles live in `src/index.css`.
-
-Design tooling is installed locally under `.agents/skills/` and is gitignored, so a fresh clone will not have it. Restore it from `Leonxlnx/taste-skill` into `.agents/skills/` (see `skills-lock.json`). The redesign plan is in `SPEC.md`.
+**Personal Github Site:** https://laishglenberg.github.io/LaishGlenberg/
