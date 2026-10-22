@@ -1,8 +1,21 @@
 # Spec — White Portfolio Redesign
 
-**Status:** round 3 (spacing) committed — owner is taking over for the final polish
+**Status:** round 4 (owner manual spacing pass) committed — owner taking over for the final nuance
 **Date:** 2026-10-21 (owner review rounds 2–3: same day)
 **Scope:** full visual rebuild of the site. Stack, data and links stay.
+
+---
+
+# ROUND 4 — owner manual spacing pass (committed)
+
+- **Desktop hero bottom edge:** the name and the actions now share one bottom edge (both boxes end at
+  653 at 1440x900). The forced `100svh` hero and its 711px frame are gone on desktop, so the empty
+  band above Selected work is removed; the hero is content-height and its bottom padding still
+  supplies half a section gap. Tablet and phone hero layouts are unchanged: the name is full-width
+  above the bottom row at 768 and stacked at 390, so bottom-aligning it there would hit the portrait.
+- **One boundary gap:** About and All repositories use half a section gap above and a full one
+  below. Hero→work, last project→About and About→repos now all measure 189 at 1440x900 (168 at
+  800px tall, 161 at 1024x768, 215 at 768 and 192 at 390). They were 213 / 276 / 252.
 
 ---
 
