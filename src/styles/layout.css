@@ -485,6 +485,17 @@
    gone and the name sits on the button's level instead of floating above it. */
 
 @media (min-width: 901px) {
+  .nav__frame {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--col-gap);
+  }
+
+  .nav__frame > nav {
+    grid-column: 10 / 13;
+    justify-self: start;
+  }
+
   .hero {
     min-height: 0;
   }
