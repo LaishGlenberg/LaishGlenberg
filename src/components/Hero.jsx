@@ -12,30 +12,32 @@ export default function Hero() {
           ))}
         </h1>
 
-        <figure className="hero__portrait">
-          <img
-            src={SITE.portrait}
-            alt={`Portrait of ${SITE.name}`}
-            width="440"
-            height="586"
-            fetchPriority="high"
-          />
-        </figure>
+        <div className="hero__aside">
+          <figure className="hero__portrait">
+            <img
+              src={SITE.portrait}
+              alt={`Portrait of ${SITE.name}`}
+              width="440"
+              height="586"
+              fetchPriority="high"
+            />
+          </figure>
 
-        <div className="hero__support">
-          <p>{HERO.support}</p>
-          <div className="hero__actions">
-            <a className="button" href={HERO.action.href}>
-              {HERO.action.label}
-            </a>
-            <a
-              className="text-link"
-              href={SITE.github}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub <span aria-hidden="true">↗</span>
-            </a>
+          <div className="hero__support">
+            <p>{HERO.support}</p>
+            <div className="hero__actions">
+              <a className="button" href={HERO.action.href}>
+                {HERO.action.label}
+              </a>
+              <a
+                className="text-link"
+                href={SITE.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub <span aria-hidden="true">↗</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>

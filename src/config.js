@@ -21,6 +21,9 @@ export const SELECTED_WORK = [
     description: "Web search for agents, from the terminal.",
     href: "https://github.com/LaishGlenberg/exa-cli",
     image: asset("assets/images/work/exa-cli.png"),
+    note:
+      "Wraps the Exa MCP server so search, fetch and deep search run from one command, without leaving the shell.",
+    stack: ["TypeScript", "MCP", "Node"],
   },
   {
     name: "pi-command-cli",
@@ -28,6 +31,9 @@ export const SELECTED_WORK = [
     description: "Saved startup profiles for pi, without the typing.",
     href: "https://github.com/LaishGlenberg/pi-command-cli",
     image: asset("assets/images/work/pi-command-cli.png"),
+    note:
+      "Saves startup flags and prompts as named profiles, so a session starts with one short command instead of a long one.",
+    stack: ["TypeScript", "Node", "CLI"],
   },
   {
     name: "firebase-emulator-mcp",
@@ -35,6 +41,9 @@ export const SELECTED_WORK = [
     description: "Firebase emulators as tools for AI agents.",
     href: "https://github.com/LaishGlenberg/firebase-emulator-mcp",
     image: asset("assets/images/work/firebase-emulator-mcp.png"),
+    note:
+      "Starts the Firebase emulator suite and exposes each emulator as a tool an agent can call while it works.",
+    stack: ["TypeScript", "MCP", "Firebase"],
   },
   {
     name: "find-open-seats-python",
@@ -42,6 +51,9 @@ export const SELECTED_WORK = [
     description: "Watches ASU class seats and sends a notification when one opens.",
     href: "https://github.com/LaishGlenberg/find-open-seats-python",
     image: asset("assets/images/work/find-open-seats-python.png"),
+    note:
+      "Polls ASU class sections every ten minutes and sends a notification the moment a seat frees up.",
+    stack: ["Python", "REST API", "Notifications"],
   },
   {
     name: "termai",
@@ -49,6 +61,9 @@ export const SELECTED_WORK = [
     description: "Keeps command output in context for in-terminal agents.",
     href: "https://github.com/LaishGlenberg/termai",
     image: asset("assets/images/work/termai.png"),
+    note:
+      "Keeps recent command output in a context window, so an agent working in the terminal can read what just happened.",
+    stack: ["TypeScript", "TUI", "Node"],
   },
 ];
 

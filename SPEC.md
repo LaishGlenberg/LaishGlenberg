@@ -1,12 +1,50 @@
 # Spec — White Portfolio Redesign
 
-**Status:** done — critique round 1 passed at 7.6, report written, ready for the owner's review
-**Date:** 2026-10-21
+**Status:** round 2 committed; round 3 is a spacing pass on the whole page (in progress)
+**Date:** 2026-10-21 (owner review round 2: same day)
 **Scope:** full visual rebuild of the site. Stack, data and links stay.
 
 ---
 
-# HANDOFF — read this first
+# ROUND 2 — DONE (owner review, committed)
+
+Owner asked for the portrait to sit beside the name and for the empty half of each work block to be
+filled. Both are in `feat: set the portrait beside the name and fill the work spreads`.
+
+1. **Hero portrait** — the figure and `.hero__support` sit in `.hero__aside`, `grid-column: 10 / 13`,
+   `grid-row: 1 / 3`, bottom-aligned: the plate sits directly above the sentence, to the right of the
+   name (the name ends at column 8, so the column starts at 10 to stay clear of “Glenberg”). Tablet
+   keeps a bottom row (portrait left, copy right); phone stacks portrait then copy.
+2. **Selected work** — `Project.jsx` is now head / media / copy: media takes 7 columns (left `1/8`,
+   right `6/13`), the copy column takes 5 (`8/13` left, `1/6` right), name + kind at the top,
+   description + `note` under it, stack and “View repository” bottom-aligned with the plate.
+   `config.js` grew `note` and `stack` per project. `PLACEMENTS` is `[left, right]` and
+   `.project--inset` was removed: with a caption column the third width could not carry its own copy.
+   Under 900px the project stacks (head, plate, copy) and the right-hand plate narrows to 82%.
+
+**Verified:** lint 0 FAIL / 0 WARN; inspect 0 FAIL / 2 WARN at 1440, 768, 390 (the two recorded
+WARNs). Tablet and phone work captures reviewed for the stack order and the `note` wrap — clean.
+The `note` is body ink, not muted: it is reading copy, so the “muted is meta only” rule stands.
+
+**Next (round 3):** the owner reports inconsistent vertical spacing. Audit and normalise the
+section rhythm, the title-to-content gap, the work spread internals and the raised right rows.
+
+**Resume:**
+
+```bash
+cd /home/lg/projects/LaishGlenberg
+(nohup npx vite --port 5199 --strictPort >/tmp/lg-vite.log 2>&1 &)
+node .agents/skills/design-taste-frontend/scripts/lint.mjs index.html src
+node .agents/skills/design-taste-frontend/scripts/inspect.mjs \
+  http://localhost:5199/LaishGlenberg/ --out .taste-skill/r3
+```
+
+Everything below this section describes the round-1 state; it is still accurate except where the
+round-2 notes above supersede it.
+
+---
+
+# HANDOFF (round 1) — read this first
 
 **Branch:** `lg/feat/white-portfolio-redesign` (not pushed, no PR)
 **HEAD:** the `docs: sync the redesign handoff` commit (C8); C6 is `7ba8c65 fix: critique round 1`
