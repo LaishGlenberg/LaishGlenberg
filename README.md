@@ -3,6 +3,8 @@
 [![npm](https://custom-icon-badges.demolab.com/badge/npm-@lglen-CB3837?logo=npm&logoColor=white)](https://www.npmjs.com/~lglen)
 [![LinkedIn](https://custom-icon-badges.demolab.com/badge/LinkedIn-@laish--glenberg-0A66C2?logo=linkedin-white&logoColor=fff)](https://www.linkedin.com/in/laish-glenberg)
 
+**Personal Portfolio (GitHub) Site:** https://laishglenberg.github.io/LaishGlenberg/
+
 I'm a software engineer with a B.S. in computer science, currently pursuing a masters degree at Arizona State University. My main focus is web development (fullstack) and AI engineering, although I like to dabble in many different disciplines like creating vs code extensions, mcp servers, npm packages, and a lot more; as you can see from my vast amount of repositories.
 
 ### Notable Projects:
@@ -41,5 +43,3 @@ As of right now, **pi-command-cli** and **pi-agent-graph-builder** are my main p
   - [Datvis_Matrix_Tool](https://github.com/LaishGlenberg/Datvis_Matrix_Tool): website for teaching matrix operations and linear algebra interactively
   - [neural-net-builder](https://github.com/LaishGlenberg/neural-net-builder): website for building neural networks and training them interactively
   - [rate-my-professor-vs-experience-python-ML](https://github.com/LaishGlenberg/rate-my-professor-vs-experience-python-ML): stub linking to my 3 ipynb notebooks detailing lengthy ML report comparing teaching experience to rate my professor score
-
-**Personal Github Site:** https://laishglenberg.github.io/LaishGlenberg/
