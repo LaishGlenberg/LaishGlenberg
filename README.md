@@ -9,7 +9,13 @@ I'm a software engineer with a B.S. in computer science, currently pursuing a ma
 
 ### Notable Projects:
 
-As of right now, **pi-command-cli** and **pi-agent-graph-builder** are my main personal project
+As of right now, **pi-command-cli** and **pi-agent-graph-builder** are my main personal projects
+
+- **agentic search cli**
+  - [deepseek-search-cli](https://github.com/LaishGlenberg/deepseek-search-cli): First typescript cli supporting deepseek web search
+    - **npm**: [deepseek-search-cli](https://www.npmjs.com/package/deepseek-search-cli)
+  - [exa-cli](https://github.com/LaishGlenberg/exa-cli): exa web search cli for agents (ports exa's web mcp to typescript cli)
+    - **npm**: [@lglen/exa-cli](https://www.npmjs.com/package/@lglen/exa-cli)
 
 - **pi coding agent related**
   - [pi-agent-graph-builder](https://github.com/LaishGlenberg/pi-agent-graph): a custom python framework that builds and launches pi agents for easy orchestration
@@ -23,8 +29,6 @@ As of right now, **pi-command-cli** and **pi-agent-graph-builder** are my main p
 
    
 - **other useful projects**
-  - [exa-cli](https://github.com/LaishGlenberg/exa-cli): exa web search cli for agents (ports exa's web mcp to typescript cli)
-    - **npm**: [@lglen/exa-cli](https://www.npmjs.com/package/@lglen/exa-cli)
   - [awk-changelog-tool](https://github.com/LaishGlenberg/awk-changelog-tool): npx cli tool that generates git changelogs extremely fast with built in gh cli integration for pr descriptions
     - **npm**: [@lglen/awk-changelog-tool](https://www.npmjs.com/package/@lglen/awk-changelog-tool)
   - [bing-image-helper](https://github.com/LaishGlenberg/bing-image-helper): node js sdk for interacting with internal bing image api used for agent grounding (not for prod use)
