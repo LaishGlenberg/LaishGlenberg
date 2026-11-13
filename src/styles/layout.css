@@ -350,7 +350,6 @@
 }
 
 .footer__note {
-  max-width: 26ch;
   font-size: var(--step-body);
 }
 
@@ -460,6 +459,7 @@
 .hero__portrait {
   width: 100%;
   overflow: hidden;
+  border-radius: 8px;
 }
 
 .hero__portrait img {
@@ -467,6 +467,7 @@
   aspect-ratio: 3 / 4;
   object-fit: cover;
   background: var(--wash);
+  filter: grayscale(100%);
 }
 
 .hero__support p {

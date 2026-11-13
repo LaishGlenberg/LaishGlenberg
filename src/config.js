@@ -78,7 +78,7 @@ export const ABOUT = {
 };
 
 export const FOOTER = {
-  note: "Open to interesting problems and good tools.",
+  note: "Always open to new, challenging problems",
   links: [
     { label: "GitHub", href: SITE.github },
     { label: "LinkedIn", href: SITE.linkedin },
