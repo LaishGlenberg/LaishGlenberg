@@ -1,4 +1,5 @@
 import { SITE } from "../config.js";
+import ArrowIcon from "./ArrowIcon.jsx";
 
 export default function About() {
   return (
@@ -24,7 +25,7 @@ export default function About() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            The best ones are on GitHub <span aria-hidden="true">↗</span>
+            The best ones are on GitHub <ArrowIcon />
           </a>
         </p>
       </div>

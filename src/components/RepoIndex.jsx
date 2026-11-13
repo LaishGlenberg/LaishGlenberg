@@ -1,5 +1,6 @@
 import { useState } from "react";
 import repoData from "../repos-data.json";
+import ArrowIcon from "./ArrowIcon.jsx";
 
 const GROUPS = ["All", "TypeScript", "JavaScript", "Python", "Other"];
 const LANGUAGES = new Set(["TypeScript", "JavaScript", "Python"]);
@@ -68,8 +69,8 @@ export default function RepoIndex() {
                       ? `${repo.stargazers_count} star${repo.stargazers_count === 1 ? "" : "s"}`
                       : ""}
                   </span>
-                  <span className="repo-row__arrow" aria-hidden="true">
-                    ↗
+                  <span className="repo-row__arrow">
+                    <ArrowIcon />
                   </span>
                 </span>
               </a>

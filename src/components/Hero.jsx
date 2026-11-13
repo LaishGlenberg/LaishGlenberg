@@ -1,4 +1,5 @@
 import { HERO, SITE } from "../config.js";
+import ArrowIcon from "./ArrowIcon.jsx";
 
 export default function Hero() {
   return (
@@ -35,7 +36,7 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                GitHub <span aria-hidden="true">↗</span>
+                GitHub <ArrowIcon />
               </a>
             </div>
           </div>

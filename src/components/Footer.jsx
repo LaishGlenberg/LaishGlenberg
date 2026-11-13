@@ -1,4 +1,5 @@
 import { FOOTER, SITE } from "../config.js";
+import ArrowIcon from "./ArrowIcon.jsx";
 
 export default function Footer() {
   return (
@@ -32,12 +33,12 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {link.label} <span aria-hidden="true">↗</span>
+                    {link.label} <ArrowIcon />
                   </a>
                 </li>
               ))}
               <li>
-                <a href="#main">Back to top ↑</a>
+                <a href="#main">Back to top <ArrowIcon up /></a>
               </li>
             </ul>
           </div>

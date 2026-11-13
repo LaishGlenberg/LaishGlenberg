@@ -1,3 +1,5 @@
+import ArrowIcon from "./ArrowIcon.jsx";
+
 const PLACEMENTS = ["left", "right"];
 
 export default function Project({ project, index }) {
@@ -53,7 +55,7 @@ export default function Project({ project, index }) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            View repository <span aria-hidden="true">↗</span>
+            View repository <ArrowIcon />
           </a>
         </div>
       </div>
