@@ -39,6 +39,7 @@ async function main() {
     html_url: repo.html_url,
     language: repo.language,
     stargazers_count: repo.stargazers_count,
+    updated_at: repo.updated_at,
   }]));
 
   // Keep existing order and extra fields to avoid unrelated changes in the data file.

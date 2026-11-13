@@ -10,6 +10,7 @@ const groupFor = (language) => (LANGUAGES.has(language) ? language : "Other");
 const repos = [...repoData.repos].sort(
   (a, b) =>
     (b.stargazers_count || 0) - (a.stargazers_count || 0) ||
+    (b.updated_at || "").localeCompare(a.updated_at || "") ||
     a.name.localeCompare(b.name),
 );
 
