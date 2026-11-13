@@ -10,7 +10,7 @@ export const SITE = {
 
 export const HERO = {
   lines: ["Laish", "Glenberg"],
-  support: "Developer tools, MCP servers and web experiments.",
+  support: "AI based development, Agentic workflows, Dev tools, Web experiments, And more",
   action: { label: "See the work", href: "#work" },
 };
 

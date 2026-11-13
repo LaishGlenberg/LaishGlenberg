@@ -15,17 +15,15 @@ export default function About() {
           <mark>AI engineering</mark>: I build the small, sharp tools that make
           agent workflows less painful &mdash;{" "}
           <mark>CLIs, MCP servers and npm packages</mark>. I also make VS Code
-          extensions, Figma plugins and the occasional web experiment. I like
-          problems where the interface is a command line and the feedback is
-          immediate, and I keep shipping until one turns out to be{" "}
-          <mark>genuinely useful</mark>.{" "}
+          extensions, Figma plugins and the occasional web experiment. I live for solving the most challenging system design problems, my philospophy is to stay up for <mark>as long as it takes</mark> to get the system back in order. See how this philosophy manifests itself {" "}
+          
           <a
             className="about__more"
             href={SITE.github}
             target="_blank"
             rel="noopener noreferrer"
           >
-            The best ones are on GitHub <ArrowIcon />
+            in my work <ArrowIcon />
           </a>
         </p>
       </div>

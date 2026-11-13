@@ -83,6 +83,7 @@
   overflow: hidden;
   padding: clamp(16px, 2.2vw, 32px);
   background: var(--wash);
+  border-radius: 8px;
 }
 
 .project--left .project__media {
@@ -133,6 +134,7 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
+  border-radius: 8px;
   transition: transform var(--dur-slow) var(--ease-out);
 }
 
