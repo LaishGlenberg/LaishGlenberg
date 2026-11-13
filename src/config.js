@@ -78,7 +78,11 @@ export const ABOUT = {
 };
 
 export const FOOTER = {
-  note: "Always open to new, challenging problems",
+  quote: [
+    "Too strong a strong vision can kill you - you'll walk right over the edge, firm in the knowledge of the path in front of you.",
+    'I\'d much rather have "brownian motion", where a lot of microscopic directed improvements end up pushing the system slowly in a direction that none of the individual developers really had the vision to see on their own.',
+  ],
+  quoteCitation: "Linus Torvalds (2001-11-30)",
   links: [
     { label: "GitHub", href: SITE.github },
     { label: "LinkedIn", href: SITE.linkedin },

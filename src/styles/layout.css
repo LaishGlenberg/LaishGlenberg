@@ -349,8 +349,25 @@
   gap: var(--space-8);
 }
 
-.footer__note {
+.footer__quote {
+  max-width: 68ch;
+  border-left: 2px solid var(--ink-muted);
+  padding-left: var(--space-5);
+}
+
+.footer__quote blockquote {
   font-size: var(--step-body);
+  line-height: 1.6;
+}
+
+.footer__quote blockquote p + p {
+  margin-top: var(--space-4);
+}
+
+.footer__quote figcaption {
+  margin-top: var(--space-4);
+  color: var(--ink-muted);
+  font-size: var(--step-small);
 }
 
 .footer__bottom {

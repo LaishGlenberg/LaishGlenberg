@@ -4,9 +4,18 @@ export default function Footer() {
   return (
     <footer className="footer" id="contact">
       <div className="frame footer__frame">
-        <p className="footer__note" data-reveal>
-          {FOOTER.note}
-        </p>
+        <figure className="footer__quote" data-reveal>
+          <blockquote>
+            {FOOTER.quote.map((paragraph, index) => (
+              <p key={paragraph}>
+                {index === 0 && "“"}
+                {paragraph}
+                {index === FOOTER.quote.length - 1 && "”"}
+              </p>
+            ))}
+          </blockquote>
+          <figcaption>{FOOTER.quoteCitation}</figcaption>
+        </figure>
 
         <div className="footer__bottom">
           <p className="footer__name" data-reveal style={{ "--reveal-delay": 80 }}>
