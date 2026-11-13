@@ -7,6 +7,10 @@
 
 I'm a software engineer with a B.S. in computer science, currently pursuing a masters degree at Arizona State University. My main focus is web development (fullstack) and AI engineering, although I like to dabble in many different disciplines like creating vs code extensions, mcp servers, npm packages, and a lot more; as you can see from my vast amount of repositories.
 
+### Updating the portfolio repository list
+
+Run `npm run fetch-data` to refresh public, non-fork repositories in `src/repos-data.json`. Set `GITHUB_TOKEN` if GitHub's unauthenticated rate limit is reached, then commit and deploy the updated file. Selected work is maintained separately.
+
 ### Notable Projects:
 
 As of right now, **pi-command-cli** and **pi-agent-graph-builder** are my main personal projects

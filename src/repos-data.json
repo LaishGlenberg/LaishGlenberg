@@ -5,7 +5,7 @@
       "name": "LaishGlenberg",
       "description": "Personal github site for Laish Glenberg",
       "html_url": "https://github.com/LaishGlenberg/LaishGlenberg",
-      "language": "JavaScript",
+      "language": "CSS",
       "stargazers_count": 0
     },
     {
@@ -13,7 +13,7 @@
       "name": "firebase-emulator-mcp",
       "description": "Standalone repository for firebase emulator mcp server",
       "html_url": "https://github.com/LaishGlenberg/firebase-emulator-mcp",
-      "language": "JavaScript",
+      "language": "TypeScript",
       "stargazers_count": 0,
       "readme": "# Firebase Emulator MCP Server\n[![GitHub](https://img.shields.io/badge/GitHub-firebase--emulator--mcp-181717?&logo=github)](https://github.com/LaishGlenberg)\n\nA [Model Context Protocol](https://modelcontextprotocol.io) server that exposes Firebase\nemulator data — Firestore, Auth, Logs, and Realtime Database — to AI agents over stdio.\n\nDesigned for local development workflows where AI coding assistants (Claude Code, GitHub\nCopilot, etc.) need to inspect emulator state without leaving the editor.\n\nCreated by [Laish Glenberg](https://www.linkedin.com/in/laish-glenberg/), please drop a star on the repo if this package helped you!\n\n---\n\n## Features\n\n| Tool | Description |\n|---|---|\n| `emulator_status` | Ping all emulators and report reachability |\n| `firestore_list_collections` | List root-level collection IDs |\n| `firestore_query` | Query documents with optional field filters (`==`, `>=`, `<=`, `in`, etc.) |\n| `firestore_get` | Fetch a single document by path (e.g. `Member/abc123`) |\n| `rtdb_get` | Read any path from the Realtime Database emulator |\n| `auth_list_users` | List Firebase Auth users |\n| `auth_get_user` | Look up a user by email or localId |\n| `emulator_logs` | Stream recent log entries from the emulator hub WebSocket |\n\n---\n\n## Prerequisites\n\n- **Node.js 18+** (native `fetch` and `WebSocket` — v21+ recommended)\n- **Firebase emulators** running locally — start from your project root:\n\n  ```bash\n  firebase emulators:start\n  ```\n\n  The server connects to the default emulator ports:\n  - Firestore: `8080`\n  - Auth: `9099`\n  - Realtime Database: `9000`\n  - Hub (logs): `4500`\n\n---\n\n## Install & Run\n\n### Via npm (recommended)\n\n```bash\nnpm install -g firebase-emulator-mcp\nfirebase-emulator-mcp\n```\n\n---\n\n## VS Code / MCP Client Setup\n\nAdd to your project's `.vscode/mcp.json` or VS Code user settings:\n\n```json\n{\n  \"servers\": {\n    \"firebase-emulator\": {\n      \"type\": \"stdio\",\n      \"command\": \"node\",\n      \"args\": [\"./mcp-server/lib/index.js\"],\n      \"env\": {\n        \"FIREBASE_PROJECT_ID\": \"<proj_id>\",\n        \"FIREBASE_RTDB_NAMESPACE\": \"<proj_id>-default-rtdb\"\n      }\n    }\n  }\n}\n```\n\nOr if installed globally:\n\n```json\n{\n  \"servers\": {\n    \"firebase-emulator\": {\n      \"type\": \"stdio\",\n      \"command\": \"firebase-emulator-mcp\",\n      \"env\": {\n        \"FIREBASE_PROJECT_ID\": \"<proj_id>\",\n        \"FIREBASE_RTDB_NAMESPACE\": \"<proj_id>-default-rtdb\"\n      }\n    }\n  }\n}\n```\n\nOptionally can skip install and run directly through npx\n\n```json\n{\n  \"servers\": {\n    \"firebase-emulator\": {\n      \"type\": \"stdio\",\n      \"command\": \"npx\",\n      \"args\": [\"@lglen/firebase-emulator-mcp\"],\n      \"env\": {\n        \"FIREBASE_PROJECT_ID\": \"<proj_id>\",\n        \"FIREBASE_RTDB_NAMESPACE\": \"<proj_id>-default-rtdb\"\n      }\n    }\n  }\n}\n```\n\nFor Claude Code or other MCP clients, use the same stdio configuration.\n\n---\n\n### Project structure\n\n```\nmcp-server/\n├── src/\n│   └── index.ts          # TypeScript source (all tools)\n├── lib/                   # Compiled output (git-ignored)\n├── test.mjs              # Smoke test runner\n├── tsconfig.json\n├── package.json\n├── .gitignore\n├── LICENSE               # MIT\n└── README.md\n```\n\n---\n\n## Configuration\n\nDefault emulator ports are defined in `src/index.ts` under the `EMULATORS` constant.\nEdit them to match your `firebase.json` if you use non-standard ports:\n\n| Service     | Default Port |\n|-------------|--------------|\n| Firestore   | 8080         |\n| Auth        | 9099         |\n| Realtime DB | 9000         |\n| Storage     | 9199         |\n| Emulator UI | 4000         |\n| Hub (logs)  | 4500         |\n\n---\n\n## License\n\nMIT\n\n## Author\n\nCheck me out on [GitHub](https://github.com/LaishGlenberg)"
     },
@@ -57,7 +57,7 @@
       "description": "termai - AI powered CLI tool for explaining terminal output",
       "html_url": "https://github.com/LaishGlenberg/termai",
       "language": "JavaScript",
-      "stargazers_count": 1,
+      "stargazers_count": 0,
       "readme": "# termai - AI powered CLI tool for explaining terminal output\n\n---\n\n### Description\n\nA super lightweight CLI tool that can explain terminal output (from previous commands) using Ollama or any provider that supports the OpenAI API v1 completion endpoints (OpenAI, Gemini, Perplexity, etc.). The default configuration uses Ollama over localhost with the llama3.1 model. After running a command and getting output, run 'termai' and you will get an explanation of both the command and its output. Options to explain more than 1 command or use a custom prompt. You can even send regular prompts (without terminal output) as you would when using ollama models normally without needing to change commands or switch contexts.\n\nPlease note that the bash terminal does not store terminal output or offer a way to retrieve it so termai starts a script session and stores terminal output within a log file.\n\n---\n### Installation/Setup\nTo install run \n```\nnpm install -g term-ai\n```\n\nThen follow the basic setup.\n\n```\ntermai --setup\n```\nYou can customize the http address used for the generate request, the default is just http://localhost:11434, where 11434 is the standard Ollama port as well as change the default model (llama3.1).\n\n### \"What is Ollama?\"\n\nOllama is a tool you can use to run models on your machine locally, they also offer cloud hosted models like deepseek, it is 100% free and easy to download/use. Go to https://ollama.ai/ for the official download. You can run\n```\nollama list\n```\nto see what models are being offered by default, and\n```\nollama pull llama3.1:latest\n```\nto download a new model (like llama3.1:latest). Make sure everything works by using the run command before using termai.\n```\nollama run llama3 \n```\n\n### For WSL:\n\nNote that if you are using WSL with ollama running on your main machine you can replace the localhost portion with your host machine ip address. You can choose Ollama WSL option during setup which does this automatically, although you can also find the host machine IP using this command in wsl:\n\n```\nip route | grep default | awk '{print `$3}'\n```\nBack to windows on powershell, you must also set OLLAMA to listen on a network that WSL can connect to. One way to do this is let it listen on all interfaces 0.0.0.0, this is the easiest method but can also be potentially insecure in a public wifi setting.\n```\nsetx OLLAMA_HOST 0.0.0.0\n```\nA better method is to setup a function in your powershell profile that gets your host machine ip from wsl (using the same command as before) and sets Ollama to listen on only that ip. If you don't have a powershell profile then run this powershell script first:\n```\n$profileDir = Split-Path $PROFILE -Parent\nif (!(Test-Path $profileDir)) {\n    New-Item -ItemType Directory -Path $profileDir -Force\n}\n```\nThen create the function with this script (easiest to combine both in a .ps1 file and run that in powershell)\n```\n@'\nfunction Set-OllamaWSL {\n    $wslIP = wsl -e bash -c \"ip route | grep default | awk '{print `$3}'\"\n    setx OLLAMA_HOST $wslIP /M\n    Write-Host \"✅ Ollama now bound to WSL host IP: $wslIP\" -ForegroundColor Green\n}\n'@ | Out-File $PROFILE -Encoding UTF8\n```\nThen open a new powershell terminal in admin mode and run:\n```\nSet-OllamaWSL\n```\nGoing forward any time you start a new wsl instance and want to use termai you can run the Set-OllamaWSL command in powershell to update the interface with the new ip. If you don't want to setup the function you can just run this one-liner version each time you start a new wsl instance.\n```\n$wslIP = wsl -e bash -c \"ip route | grep default | awk '{print `$3}'\"; setx OLLAMA_HOST $wslIP /M; Write-Host \"Ollama bound to: $wslIP\"\n```\n\n\n### \"Can I run non-Ollama models?\"\n\nThe api calls are done through the openai API v1 chat completion endpoints, this is the most widely used LLM API specification in the world and it is compatable with Ollama, OpenAI (gpt models), Deepseek, and more. You can easily change this through the --setup command. Unfortunately it lacks compatability with Anthropic models, support for these will have to be added in the future. \n\n---\n### Usage\nAvailable options:\n\n```\nUsage: termai [options] [query...]\n\nArguments:\n  query        Direct prompt to Ollama (skips terminal context)\n\nOptions:\n  -n <number>  Number of command blocks to retrieve (default: \"1\")\n  -p <prompt>  Custom prompt (default: \"Explain this terminal output.\")\n  -m <model>   Specify an Ollama model (default: \"llama3.1:latest\")\n  -c           Make explanation concise\n  --deep       Use DeepSeek model (cloud hosted, fast, powerful)\n  --setup      Run interactive setup\n  --config     Display current configuration\n  -h, --help   display help for command\n```\n### Examples\n\n```\nlglen@omen-lg:~/termai$ echo 'what is 2+2'\nwhat is 2+2\n```\n```\nlglen@omen-lg:~/termai$ termai\n> Querying llama3.1:latest at http://localhost:11434...\n\nThis terminal output is showing the result of running a command in the Linux or Unix terminal.\n\nHere's what's happening:\n\n1. `lglen` is the username of the user currently logged into the system.\n2. `@omen-lg:` is the hostname (or network node name) of the computer they are using.\n3. `~/termai` is the current working directory, which means the user is currently in their home directory (`~`) and has a subdirectory named `termai`.\n4. The command `echo 'what is 2+2'` is being run. `echo` is a built-in Linux/Unix command that prints its arguments to the console.\n5. The string `'what is 2+2'` is passed as an argument to the `echo` command, and it's printed to the console verbatim.\n\nIn other words, the terminal is simply echoing back what was typed, without performing any arithmetic operations or calculations on the input. The output is exactly what was entered: \"what is 2+2\".\n```\ncan use n>1 to add previous prompts/output into context\n```\nlglen@omen-lg:~/termai$ termai -n 2 -p 'only explain the command being run'\n> Querying llama3.1:latest at http://localhost:11434...\n\nThe command being run is `echo 'what is 2+2'`.\n```\nanything typed after 'termai' without arguments will be treated as a prompt, wrapping in quotes ('') is optional. This let's you query ollama or your model like normal without any terminal output\n```\nlglen@omen-lg:~/termai$ termai what is the capital of south africa?\n> Querying llama3.1:latest at http://localhost:11434...\n\nThe capital of South Africa is Pretoria, although Cape Town serves as the legislative seat and Bloemfontein is the judicial seat. This unique arrangement is known as a \"tripartite capital\" or a \"tricameral system,\" where:\n\n* Pretoria (Tshwane) serves as the administrative capital\n* Cape Town serves as the legislative capital (where Parliament meets)\n* Bloemfontein serves as the judicial capital (where the Supreme Court of Appeal is located)\n\nSo, depending on the context, you might hear different answers!\n```\n### More Info\nSo far this project only supports bash terminals but I plan to add support for powershell as well."
     },
     {
@@ -187,6 +187,134 @@
       "description": "An example game that demonstrates a bug with the \"pick Nth object\" action of the \"ObjectPickingTools\" extension.",
       "html_url": "https://github.com/LaishGlenberg/ObjectPickingToolsBugDemo",
       "language": null,
+      "stargazers_count": 0
+    },
+    {
+      "id": 1309952871,
+      "name": "awk-changelog-tool",
+      "description": "Very fast git history changelog generator with gh cli PR integration",
+      "html_url": "https://github.com/LaishGlenberg/awk-changelog-tool",
+      "language": "JavaScript",
+      "stargazers_count": 0
+    },
+    {
+      "id": 1435424632,
+      "name": "deepseek-search-cli",
+      "description": "A simple TypeScript CLI that lets you use deepseek web search (for agents)",
+      "html_url": "https://github.com/LaishGlenberg/deepseek-search-cli",
+      "language": "TypeScript",
+      "stargazers_count": 2
+    },
+    {
+      "id": 1373893130,
+      "name": "exa-cli",
+      "description": "Typescript CLI using mcp sdk to communicate with exa mcp server, run search, fetch, deep search, and agent search.",
+      "html_url": "https://github.com/LaishGlenberg/exa-cli",
+      "language": "TypeScript",
+      "stargazers_count": 0
+    },
+    {
+      "id": 1309859586,
+      "name": "keep-cache-alive",
+      "description": "Keep cache alive by sending short, timed message to vs code copilot chat window",
+      "html_url": "https://github.com/LaishGlenberg/keep-cache-alive",
+      "language": "TypeScript",
+      "stargazers_count": 0
+    },
+    {
+      "id": 1374006494,
+      "name": "laish-lang-graph-agents",
+      "description": "",
+      "html_url": "https://github.com/LaishGlenberg/laish-lang-graph-agents",
+      "language": "Python",
+      "stargazers_count": 0
+    },
+    {
+      "id": 1379599291,
+      "name": "linux-mint-helper-scripts",
+      "description": "linux mint helper scripts for auto-hiding panel, convert pi session to md, open most recent project in vs code,  more to come",
+      "html_url": "https://github.com/LaishGlenberg/linux-mint-helper-scripts",
+      "language": "Shell",
+      "stargazers_count": 0
+    },
+    {
+      "id": 1312472821,
+      "name": "non-agentic-commands-mcp",
+      "description": "",
+      "html_url": "https://github.com/LaishGlenberg/non-agentic-commands-mcp",
+      "language": "JavaScript",
+      "stargazers_count": 0
+    },
+    {
+      "id": 1419655912,
+      "name": "pi-agent-graph",
+      "description": "pi-agent-graph-builder is an agentic graph framework that is based on pi coding agent. You build agents from their commands with a simple python API. Can launch them in parallel with tmux",
+      "html_url": "https://github.com/LaishGlenberg/pi-agent-graph",
+      "language": "Python",
+      "stargazers_count": 1
+    },
+    {
+      "id": 1376312811,
+      "name": "pi-carry-model-over",
+      "description": "",
+      "html_url": "https://github.com/LaishGlenberg/pi-carry-model-over",
+      "language": "TypeScript",
+      "stargazers_count": 0
+    },
+    {
+      "id": 1369114072,
+      "name": "pi-command-cli",
+      "description": "pi-command-cli for simplifying pi startup commands and saving command profiles",
+      "html_url": "https://github.com/LaishGlenberg/pi-command-cli",
+      "language": "TypeScript",
+      "stargazers_count": 0
+    },
+    {
+      "id": 1387256766,
+      "name": "pi-parse-commands",
+      "description": "Parse chained Pi agent bash commands and display each command in simple multi line format",
+      "html_url": "https://github.com/LaishGlenberg/pi-parse-commands",
+      "language": "TypeScript",
+      "stargazers_count": 0
+    },
+    {
+      "id": 1369114350,
+      "name": "pi-sudo-helper",
+      "description": "pi-sudo-helper extension for pi agents on linux",
+      "html_url": "https://github.com/LaishGlenberg/pi-sudo-helper",
+      "language": "TypeScript",
+      "stargazers_count": 0
+    },
+    {
+      "id": 1406687359,
+      "name": "pi-to-md-cli",
+      "description": "typescript CLI for converting pi sessions into markdown",
+      "html_url": "https://github.com/LaishGlenberg/pi-to-md-cli",
+      "language": "TypeScript",
+      "stargazers_count": 0
+    },
+    {
+      "id": 1369149475,
+      "name": "rate-my-professor-vs-experience-python-ML",
+      "description": "Results of CSE 475 Machine Learning Capstone Project",
+      "html_url": "https://github.com/LaishGlenberg/rate-my-professor-vs-experience-python-ML",
+      "language": null,
+      "stargazers_count": 0
+    },
+    {
+      "id": 1435585877,
+      "name": "serverless-slackbot",
+      "description": "",
+      "html_url": "https://github.com/LaishGlenberg/serverless-slackbot",
+      "language": null,
+      "stargazers_count": 0
+    },
+    {
+      "id": 1432505795,
+      "name": "slackbot-vaultnel",
+      "description": "",
+      "html_url": "https://github.com/LaishGlenberg/slackbot-vaultnel",
+      "language": "Python",
       "stargazers_count": 0
     }
   ]

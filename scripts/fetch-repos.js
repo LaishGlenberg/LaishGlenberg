@@ -1,81 +1,65 @@
-/**
- * One-shot script: downloads all repos + READMEs from GitHub
- * and writes src/repos-data.json. Run whenever you want fresh data.
- *
- * Usage:  node scripts/fetch-repos.js
- *         node scripts/fetch-repos.js GITHUB_TOKEN   (to avoid rate limits)
- */
-
-import fs from "node:fs";
-import path from "node:path";
+/** Refresh the public, non-fork repository list: npm run fetch-data */
+import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const OWNER = "LaishGlenberg";
-
-// ── Featured repos (mirrors src/config.js) ──────────────
-const FEATURED_REPOS = [
-  "deepseek-v4-for-copilot",
-  "firebase-emulator-mcp",
-  "arrowhead-scaler-figma-plugin",
-  "termai",
-  "split-image-to-pdf",
-  "image-moment-react-site",
-];
-
-// ── Helpers ─────────────────────────────────────────────
-const token = process.argv[2] || "";
+const owner = "LaishGlenberg";
+const outPath = fileURLToPath(new URL("../src/repos-data.json", import.meta.url));
+const token = process.env.GITHUB_TOKEN || process.argv[2];
 const headers = { Accept: "application/vnd.github+json" };
 if (token) headers.Authorization = `Bearer ${token}`;
 
-async function api(url) {
-  const res = await fetch(url, { headers });
-  if (!res.ok) {
-    throw new Error(`GitHub API ${res.status} for ${url}`);
-  }
-  return res.json();
-}
-
-async function fetchReadme(repoName) {
+async function main() {
+  let existing = { repos: [] };
   try {
-    const res = await fetch(
-      `https://api.github.com/repos/${OWNER}/${repoName}/readme`,
-      { headers: { ...headers, Accept: "application/vnd.github.raw+json" } },
-    );
-    if (!res.ok) return null;
-    return await res.text();
-  } catch {
-    return null;
+    existing = JSON.parse(await readFile(outPath, "utf8"));
+  } catch (error) {
+    if (error.code !== "ENOENT") throw error;
   }
+  if (!Array.isArray(existing.repos)) throw new Error("Invalid repository data: repos must be an array");
+
+  const fetched = [];
+  for (let page = 1; ; page++) {
+    const url = `https://api.github.com/users/${owner}/repos?per_page=100&page=${page}`;
+    const response = await fetch(url, { headers });
+    if (!response.ok) {
+      throw new Error(`GitHub API returned ${response.status}: ${await response.text()}`);
+    }
+    const batch = await response.json();
+    if (!Array.isArray(batch)) throw new Error("GitHub API returned an invalid repository list");
+    fetched.push(...batch.filter((repo) => !repo.fork));
+    if (batch.length < 100) break;
+  }
+
+  const previous = new Map(existing.repos.map((repo) => [repo.id, repo]));
+  const current = new Map(fetched.map((repo) => [repo.id, {
+    ...previous.get(repo.id),
+    id: repo.id,
+    name: repo.name,
+    description: repo.description || "",
+    html_url: repo.html_url,
+    language: repo.language,
+    stargazers_count: repo.stargazers_count,
+  }]));
+
+  // Keep existing order and extra fields to avoid unrelated changes in the data file.
+  const repos = existing.repos.filter((repo) => current.has(repo.id)).map((repo) => current.get(repo.id));
+  const added = [...current.values()].filter((repo) => !previous.has(repo.id));
+  added.sort((a, b) => a.name.localeCompare(b.name));
+  repos.push(...added);
+  const removed = existing.repos.filter((repo) => !current.has(repo.id)).length;
+  const updated = repos.filter((repo) => previous.has(repo.id) &&
+    JSON.stringify(previous.get(repo.id)) !== JSON.stringify(repo)).length;
+
+  if (!added.length && !removed && !updated) {
+    console.log(`Repository list is already up to date (${repos.length} repositories).`);
+    return;
+  }
+
+  await writeFile(outPath, JSON.stringify({ ...existing, repos }, null, 2) + "\n", "utf8");
+  console.log(`Updated repository list: ${added.length} added, ${removed} removed, ${updated} updated (${repos.length} total).`);
 }
 
-// ── Main ────────────────────────────────────────────────
-const allRepos = await api(
-  `https://api.github.com/users/${OWNER}/repos?sort=updated&per_page=100`,
-);
-
-const repos = allRepos
-  .filter((r) => !r.fork)
-  .map((r) => ({
-    id: r.id,
-    name: r.name,
-    description: r.description || "",
-    html_url: r.html_url,
-    language: r.language,
-    stargazers_count: r.stargazers_count,
-  }));
-
-// Fetch READMEs for featured repos only
-for (const repo of repos) {
-  if (FEATURED_REPOS.includes(repo.name)) {
-    process.stdout.write(`Fetching README for ${repo.name}… `);
-    const readme = await fetchReadme(repo.name);
-    repo.readme = readme;
-    process.stdout.write(readme ? "OK\n" : "not found\n");
-  }
-}
-
-// Write output
-const outPath = path.join(__dirname, "..", "src", "repos-data.json");
-fs.writeFileSync(outPath, JSON.stringify({ repos }, null, 2), "utf-8");
-console.log(`\n✓ Wrote ${repos.length} repos to ${outPath}`);
+main().catch((error) => {
+  console.error(`Could not refresh repositories: ${error.message}`);
+  process.exitCode = 1;
+});
