@@ -31,6 +31,7 @@ export default function Project({ project, index }) {
           width="1200"
           height="675"
           loading="lazy"
+          className={project.imageFit === "contain" ? "is-contain" : undefined}
         />
       </a>
 

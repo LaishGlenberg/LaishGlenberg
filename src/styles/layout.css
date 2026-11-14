@@ -138,6 +138,12 @@
   transition: transform var(--dur-slow) var(--ease-out);
 }
 
+/* Demo GIFs keep their natural ratio so terminal output isn't cropped. */
+.project__media img.is-contain {
+  aspect-ratio: 814 / 510;
+  object-fit: contain;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .project__media:hover img {
     transform: scale(1.02);

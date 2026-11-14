@@ -60,7 +60,8 @@ export const SELECTED_WORK = [
     kind: "TypeScript TUI",
     description: "Keeps command output in context for in-terminal agents.",
     href: "https://github.com/LaishGlenberg/termai",
-    image: asset("assets/images/work/termai.png"),
+    image: asset("assets/gifs/termai.gif"),
+    imageFit: "contain",
     note:
       "Keeps recent command output in a context window, so an agent working in the terminal can read what just happened.",
     stack: ["TypeScript", "TUI", "Node"],
