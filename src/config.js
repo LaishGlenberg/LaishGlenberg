@@ -42,7 +42,9 @@ export const SELECTED_WORK = [
     kind: "Node MCP server",
     description: "Firebase emulators as tools for AI agents.",
     href: "https://github.com/LaishGlenberg/firebase-emulator-mcp",
-    image: asset("assets/images/work/firebase-emulator-mcp.png"),
+    image: asset("assets/gifs/firebase-emulator-mcp.gif"),
+    imageFit: "contain",
+    imageSize: [814, 498],
     note:
       "Starts the Firebase emulator suite and exposes each emulator as a tool an agent can call while it works.",
     stack: ["TypeScript", "MCP", "Firebase"],
