@@ -140,7 +140,7 @@
 
 /* Demo GIFs keep their natural ratio so terminal output isn't cropped. */
 .project__media img.is-contain {
-  aspect-ratio: 814 / 510;
+  aspect-ratio: auto;
   object-fit: contain;
 }
 

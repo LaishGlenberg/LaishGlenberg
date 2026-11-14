@@ -30,7 +30,9 @@ export const SELECTED_WORK = [
     kind: "TypeScript CLI",
     description: "Saved startup profiles for pi, without the typing.",
     href: "https://github.com/LaishGlenberg/pi-command-cli",
-    image: asset("assets/images/work/pi-command-cli.png"),
+    image: asset("assets/gifs/pi-command-cli.gif"),
+    imageFit: "contain",
+    imageSize: [814, 496],
     note:
       "Saves startup flags and prompts as named profiles, so a session starts with one short command instead of a long one.",
     stack: ["TypeScript", "Node", "CLI"],
@@ -62,6 +64,7 @@ export const SELECTED_WORK = [
     href: "https://github.com/LaishGlenberg/termai",
     image: asset("assets/gifs/termai.gif"),
     imageFit: "contain",
+    imageSize: [814, 510],
     note:
       "Keeps recent command output in a context window, so an agent working in the terminal can read what just happened.",
     stack: ["TypeScript", "TUI", "Node"],

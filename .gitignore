@@ -150,3 +150,5 @@ vite.config.ts.timestamp-*
 
 # Local design-gate artifacts (screenshots, reports)
 .taste-skill/
+
+demos/

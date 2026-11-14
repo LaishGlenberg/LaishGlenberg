@@ -4,6 +4,7 @@ const PLACEMENTS = ["left", "right"];
 
 export default function Project({ project, index }) {
   const placement = PLACEMENTS[index % PLACEMENTS.length];
+  const [width, height] = project.imageSize ?? [1200, 675];
 
   return (
     <article className={`project project--${placement}`}>
@@ -28,8 +29,8 @@ export default function Project({ project, index }) {
         <img
           src={project.image}
           alt={`${project.name} repository preview`}
-          width="1200"
-          height="675"
+          width={width}
+          height={height}
           loading="lazy"
           className={project.imageFit === "contain" ? "is-contain" : undefined}
         />
