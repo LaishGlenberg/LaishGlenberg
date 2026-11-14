@@ -638,11 +638,6 @@
     margin-top: 0;
   }
 
-  .project--right .project__media {
-    width: 82%;
-    margin-left: auto;
-  }
-
   .project__head {
     order: 1;
     margin-bottom: var(--space-4);
