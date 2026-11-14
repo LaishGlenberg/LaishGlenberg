@@ -26,16 +26,20 @@ only animated while centred on screen. Pipeline for adding one:
    diff in.gif.md5 out.gif.md5   # empty output = pixel-identical
    ```
 
-4. **Still frame** — reuse the project's GitHub card at
-   `assets/images/work/<repo>.png` as the `thumb`; it shows until the preview is
-   centred, so there is no extra asset to generate.
+4. **Frames** — `ffmpeg -i out.gif -vframes 1 out.poster.png` (frame 0, 3-25 KB)
+   is the base layer; the GitHub card sits on top as `thumb` and fades off as the
+   preview nears the middle of the screen, revealing frame 0. The fade is 1:1 with
+   scroll; the GIF starts playing only after holding inside the centre band for
+   `PLAY_DELAY` ms (`WINDOW`/`ZONE`/`PLAY_DELAY` in `Project.jsx`). Poster paths
+   derive from the GIF path (`.gif` -> `.poster.png`), so there is no config field
+   for them.
 5. **Register** in `src/config.js`. The still frame shows until the preview is
    centred, then the GIF plays (preloaded, swapped back to the still when it
    leaves the middle of the viewport):
 
    ```js
    image: asset("assets/gifs/<repo>.gif"),
-   thumb: asset("assets/images/work/<repo>.png"), // shown until the GIF plays
+   thumb: asset("assets/images/work/<repo>.png"), // card layered over frame 0
    imageFit: "contain",   // natural ratio, nothing cropped
    imageSize: [814, 498], // reference width/height, reserves the box
    ```

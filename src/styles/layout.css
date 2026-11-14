@@ -144,6 +144,24 @@
   object-fit: contain;
 }
 
+/* The GIF's first frame sits under the GitHub card, which fades off as the
+   preview scrolls towards the middle of the window (--play, 0 to 1). */
+.project__media-frame {
+  position: relative;
+  display: block;
+  --play: 0;
+}
+
+.project__media .project__media__card {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: contain;
+  opacity: calc(1 - var(--play));
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .project__media:hover img {
     transform: scale(1.02);
