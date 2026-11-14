@@ -26,18 +26,20 @@ only animated while centred on screen. Pipeline for adding one:
    diff in.gif.md5 out.gif.md5   # empty output = pixel-identical
    ```
 
-4. **Poster** — `ffmpeg -i out.gif -vframes 1 out.poster.png` (frame 0, 3-25 KB).
-   `Project.jsx` derives the poster path from the GIF path, so there is no config
-   field for it.
+4. **Still frame** — reuse the project's GitHub card at
+   `assets/images/work/<repo>.png` as the `thumb`; it shows until the preview is
+   centred, so there is no extra asset to generate.
 5. **Register** in `src/config.js`. The still frame shows until the preview is
    centred, then the GIF plays (preloaded, swapped back to the still when it
    leaves the middle of the viewport):
 
    ```js
    image: asset("assets/gifs/<repo>.gif"),
+   thumb: asset("assets/images/work/<repo>.png"), // shown until the GIF plays
    imageFit: "contain",   // natural ratio, nothing cropped
    imageSize: [814, 498], // reference width/height, reserves the box
    ```
 
-Projects without a recording keep a 1200x675 card at
-`assets/images/work/<repo>.png` and need neither `imageFit` nor `imageSize`.
+Projects without a recording just point `image` at the 1200x675 card at
+`assets/images/work/<repo>.png` and need neither `thumb`, `imageFit` nor
+`imageSize`.

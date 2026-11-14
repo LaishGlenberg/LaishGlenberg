@@ -31,6 +31,7 @@ export const SELECTED_WORK = [
     description: "Saved startup profiles for pi, without the typing.",
     href: "https://github.com/LaishGlenberg/pi-command-cli",
     image: asset("assets/gifs/pi-command-cli.gif"),
+    thumb: asset("assets/images/work/pi-command-cli.png"),
     imageFit: "contain",
     imageSize: [814, 496],
     note:
@@ -43,6 +44,7 @@ export const SELECTED_WORK = [
     description: "Firebase emulators as tools for AI agents.",
     href: "https://github.com/LaishGlenberg/firebase-emulator-mcp",
     image: asset("assets/gifs/firebase-emulator-mcp.gif"),
+    thumb: asset("assets/images/work/firebase-emulator-mcp.png"),
     imageFit: "contain",
     imageSize: [814, 498],
     note:
@@ -65,6 +67,7 @@ export const SELECTED_WORK = [
     description: "Keeps command output in context for in-terminal agents.",
     href: "https://github.com/LaishGlenberg/termai",
     image: asset("assets/gifs/termai.gif"),
+    thumb: asset("assets/images/work/termai.png"),
     imageFit: "contain",
     imageSize: [814, 510],
     note:

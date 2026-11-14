@@ -8,11 +8,10 @@ export default function Project({ project, index }) {
   const [width, height] = project.imageSize ?? [1200, 675];
   const imgRef = useRef(null);
   const deferred = project.image.endsWith(".gif");
-  const poster = deferred
-    ? project.image.replace(/\.gif$/, ".poster.png")
-    : project.image;
+  // Out of focus, the GitHub card stands in for the GIF, which cannot be paused.
+  const still = deferred ? (project.thumb ?? project.image) : project.image;
 
-  // A GIF animates the moment it is displayed, so show its first frame as a
+  // A GIF animates the moment it is displayed, so show the GitHub card as a
   // still and swap in the GIF once the preview is centred in the viewport.
   useEffect(() => {
     const img = imgRef.current;
@@ -28,14 +27,14 @@ export default function Project({ project, index }) {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        img.src = entry.isIntersecting ? project.image : poster;
+        img.src = entry.isIntersecting ? project.image : still;
       },
       { rootMargin: "-30% 0px -30% 0px", threshold: 0.5 },
     );
 
     observer.observe(img);
     return () => observer.disconnect();
-  }, [deferred, project.image, poster]);
+  }, [deferred, project.image, still]);
 
   return (
     <article className={`project project--${placement}`}>
@@ -59,8 +58,10 @@ export default function Project({ project, index }) {
       >
         <img
           ref={imgRef}
-          src={poster}
+          src={still}
           alt={`${project.name} repository preview`}
+          // Pin the box to the GIF's ratio so the 16:9 card can't resize it.
+          style={deferred ? { aspectRatio: `${width} / ${height}` } : undefined}
           width={width}
           height={height}
           loading="lazy"
