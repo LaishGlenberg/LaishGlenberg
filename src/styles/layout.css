@@ -152,6 +152,16 @@
   --play: 0;
 }
 
+/* Frame 0 stays hidden while the card is fully opaque: it is a different ratio
+   from the card, so any of it showing would read as a black border. */
+.project__media img.is-poster {
+  opacity: 0;
+}
+
+.project__media-frame.is-armed img.is-poster {
+  opacity: 1;
+}
+
 .project__media .project__media__card {
   position: absolute;
   inset: 0;

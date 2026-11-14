@@ -57,6 +57,9 @@ export default function Project({ project, index }) {
       );
 
       frame.style.setProperty("--play", progress);
+      // The poster is only revealed once the card starts moving away, otherwise
+      // the darker terminal inside it shows around the 16:9 card.
+      frame.classList.toggle("is-armed", progress > 0);
 
       if (progress === 1) {
         // Hold on the first frame, so a fast flick cannot start the demo in the
@@ -118,7 +121,12 @@ export default function Project({ project, index }) {
             width={width}
             height={height}
             loading="lazy"
-            className={project.imageFit === "contain" ? "is-contain" : undefined}
+            className={[
+              project.imageFit === "contain" && "is-contain",
+              animated && "is-poster",
+            ]
+              .filter(Boolean)
+              .join(" ") || undefined}
           />
           {animated && project.thumb && (
             <img
