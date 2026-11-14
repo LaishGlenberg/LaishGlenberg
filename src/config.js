@@ -20,7 +20,10 @@ export const SELECTED_WORK = [
     kind: "TypeScript CLI",
     description: "Web search for agents, from the terminal.",
     href: "https://github.com/LaishGlenberg/exa-cli",
-    image: asset("assets/images/work/exa-cli.png"),
+    image: asset("assets/gifs/exa-cli.gif"),
+    thumb: asset("assets/images/work/exa-cli.png"),
+    imageFit: "contain",
+    imageSize: [792, 506],
     note:
       "Wraps the Exa MCP server so search, fetch and deep search run from one command, without leaving the shell.",
     stack: ["TypeScript", "MCP", "Node"],
@@ -56,7 +59,10 @@ export const SELECTED_WORK = [
     kind: "Python",
     description: "Watches ASU class seats and sends a notification when one opens.",
     href: "https://github.com/LaishGlenberg/find-open-seats-python",
-    image: asset("assets/images/work/find-open-seats-python.png"),
+    image: asset("assets/gifs/find-open-seats-python.gif"),
+    thumb: asset("assets/images/work/find-open-seats-python.png"),
+    imageFit: "contain",
+    imageSize: [810, 490],
     note:
       "Polls ASU class sections every ten minutes and sends a notification the moment a seat frees up.",
     stack: ["Python", "REST API", "Notifications"],
